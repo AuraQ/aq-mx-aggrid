@@ -19,13 +19,27 @@
                     <caption>Data source</caption>
                     <description />
                 </property>
+                <property key="editMode" type="expression" required="true">
+                    <caption>Editable</caption>
+                    <description>Whether the grid should be in edit mode or readonly</description>
+                    <returnType type="Boolean" />
+                </property>       
             </propertyGroup>
+            <propertyGroup caption="Editability">
+            <systemProperty key="Editability"/>
+        </propertyGroup>
             <propertyGroup caption="Columns">
                 <property key="columns" type="object" isList="true" required="true">
                     <caption>Columns</caption>
                     <description />
                     <properties>
-                        <propertyGroup caption="General"><property key="showContentAs" type="enumeration" defaultValue="attribute">
+                        <propertyGroup caption="General">
+                        <property key="columnIdentifier" type="expression" required="true">
+                            <caption>Identifier</caption>
+                            <description>A unique identifier for this field (used internally to map row data to column data)</description>
+                            <returnType type="String" />
+                        </property>
+                        <property key="showContentAs" type="enumeration" defaultValue="attribute">
                                 <caption>Show</caption>
                                 <description />
                                 <enumerationValues>
@@ -54,11 +68,19 @@
                             </property>
                             <property key="content" type="widgets" dataSource="../gridData" required="false">
                                 <caption>Custom content</caption>
+                                <description /> 
+                            </property>
+                            <property key="editContent" type="widgets" dataSource="../gridData" required="false">
+                                <caption>Editable content</caption>
                                 <description />
                             </property>
                             <property key="dynamicText" type="textTemplate" dataSource="../gridData" required="false">
                                 <caption>Dynamic text</caption>
                                 <description />
+                            </property>
+                            <property key="allowEventPropagation" type="boolean" defaultValue="true">
+                                <caption>Allow row events</caption>
+                                <description>If set to yes, then all default events on the row, such as "on click" or selection, will be triggered when the user interacts with custom content.</description>
                             </property>
                         </propertyGroup>
                     </properties>

@@ -9,16 +9,6 @@ import {
     PreviewProps,
     text
 } from "src/util/editorConfig";
-// import {
-//     container,
-//     datasource,
-//     dropzone,
-//     rowLayout,
-//     selectable,
-//     StructurePreviewProps,
-//     text,
-//     structurePreviewPalette
-// } from "src/util/structure-util";
 
 export type Platform = "web" | "desktop";
 
@@ -53,10 +43,6 @@ export type Problem = {
     studioUrl?: string; // studio-specific link
 };
 
-
-
-
-
 export function getProperties(
     _values: AgGridPreviewProps,
     defaultProperties: Properties /* , target: Platform*/
@@ -70,28 +56,11 @@ export function getProperties(
     return defaultProperties;
 }
 
-// export function check(_values: AgGridPreviewProps): Problem[] {
-//     const errors: Problem[] = [];
-//     // Add errors to the above array to throw errors in Studio and Studio Pro.
-//     /* Example
-//     if (values.myProperty !== "custom") {
-//         errors.push({
-//             property: `myProperty`,
-//             message: `The value of 'myProperty' is different of 'custom'.`,
-//             url: "https://github.com/myrepo/mywidget"
-//         });
-//     }
-//     */
-//     return errors;
-// }
-
-
-
-export function getPreview(values: AgGridPreviewProps, isDarkMode: boolean, spVersion: number[] = [0, 0, 0]): PreviewProps {
+export function getPreview(values: AgGridPreviewProps, isDarkMode: boolean, _spVersion: number[] = [0, 0, 0]): PreviewProps {
     // Customize your pluggable widget appearance for Studio Pro.
     
-    const [major, minor] = spVersion;
-    const canHideDataSourceHeader = major > 9 || (major === 9 && minor >= 20); //TODO - research this in more detail (copied from DG2)
+    // const [major, minor] = spVersion;
+    // const canHideDataSourceHeader = major > 9 || (major === 9 && minor >= 20); //TODO - research this in more detail (copied from DG2)
 
     const palette = structurePreviewPalette[isDarkMode ? "dark" : "light"];
     const hasColumns = values.columns && values.columns.length > 0;
@@ -104,8 +73,8 @@ export function getPreview(values: AgGridPreviewProps, isDarkMode: boolean, spVe
                     grow: 1, //TODO - change this if we allow a manual setting of column width
                     backgroundColor:undefined //TODO - change this if we allow a column to be hidden - to indicate which ones are hidden by default
                 })(
-                    column.showContentAs === "customContent"
-                        ? dropzone(dropzone.hideDataSourceHeaderIf(canHideDataSourceHeader))(column.content)                    
+                    (column.showContentAs === "customContent"
+                        ? dropzone({placeholder: "Enter custom content here", showDataSourceHeader:true})(column.content)                    
                         : container({
                               padding: 8
                           })(
@@ -114,7 +83,8 @@ export function getPreview(values: AgGridPreviewProps, isDarkMode: boolean, spVe
                                       ? column.dynamicText ?? "Dynamic text"
                                       : `[${column.attribute ? column.attribute : "No attribute selected"}]`
                               )
-                          )
+                          )),
+                          dropzone({placeholder: "Enter edit mode content here", showDataSourceHeader:true})(column.editContent)
                 )
             )
         }
@@ -123,34 +93,6 @@ export function getPreview(values: AgGridPreviewProps, isDarkMode: boolean, spVe
     }
 
     const columnLayout = rowLayout({columnSize: "fixed"})(...getColumns());
-
-    // const noColumns = rowLayout({
-    //     columnSize: "fixed"
-    // })(...[text({ fontColor: palette.text.data })("No columns defined. Please add at least one column in the properties")]);
-    
-    // const columns = rowLayout({
-    //     columnSize: "fixed"
-    // })(
-    //     ...values.columns.map(column =>
-    //         container({
-    //             borders: true,
-    //             grow: 1, //TODO - change this if we allow a manual setting of column width
-    //             backgroundColor:undefined //TODO - change this if we allow a column to be hidden - to indicate which ones are hidden by default
-    //         })(
-    //             column.showContentAs === "customContent"
-    //                 ? dropzone(dropzone.hideDataSourceHeaderIf(canHideDataSourceHeader))(column.content)                    
-    //                 : container({
-    //                       padding: 8
-    //                   })(
-    //                       text({ fontSize: 10, fontColor: palette.text.secondary })(
-    //                           column.showContentAs === "dynamicText"
-    //                               ? column.dynamicText ?? "Dynamic text"
-    //                               : `[${column.attribute ? column.attribute : "No attribute selected"}]`
-    //                       )
-    //                   )
-    //         )
-    //     )
-    // );
 
     const getColumnHeaders = () => {
         if(hasColumns){
@@ -219,3 +161,6 @@ export function getCustomCaption(values: AgGridPreviewProps): string {
     const dsProperty: DsProperty = datasource(values.gridData)().property ?? {};
     return dsProperty.caption || "AG Grid";
 }
+
+// custom validation
+export { check } from "./util/consistency-check";

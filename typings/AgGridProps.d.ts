@@ -4,25 +4,31 @@
  * @author Mendix Widgets Framework Team
  */
 import { ComponentType, CSSProperties, ReactNode } from "react";
-import { ListValue, ListAttributeValue, ListExpressionValue, ListWidgetValue } from "mendix";
+import { DynamicValue, ListValue, ListAttributeValue, ListExpressionValue, ListWidgetValue } from "mendix";
 import { Big } from "big.js";
 
 export type ShowContentAsEnum = "attribute" | "dynamicText" | "customContent";
 
 export interface ColumnsType {
+    columnIdentifier: DynamicValue<string>;
     showContentAs: ShowContentAsEnum;
     attribute: ListAttributeValue<string | Big | any | boolean | Date>;
     caption: string;
     content?: ListWidgetValue;
+    editContent?: ListWidgetValue;
     dynamicText?: ListExpressionValue<string>;
+    allowEventPropagation: boolean;
 }
 
 export interface ColumnsPreviewType {
+    columnIdentifier: string;
     showContentAs: ShowContentAsEnum;
     attribute: string;
     caption: string;
     content: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
+    editContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
     dynamicText: string;
+    allowEventPropagation: boolean;
 }
 
 export interface AgGridContainerProps {
@@ -31,6 +37,7 @@ export interface AgGridContainerProps {
     style?: CSSProperties;
     tabIndex?: number;
     gridData: ListValue;
+    editMode: DynamicValue<boolean>;
     columns: ColumnsType[];
 }
 
@@ -46,5 +53,6 @@ export interface AgGridPreviewProps {
     renderMode: "design" | "xray" | "structure";
     translate: (text: string) => string;
     gridData: {} | { caption: string } | { type: string } | null;
+    editMode: string;
     columns: ColumnsPreviewType[];
 }

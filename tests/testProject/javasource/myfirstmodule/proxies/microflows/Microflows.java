@@ -15,42 +15,14 @@ public final class Microflows
 	private Microflows() {}
 
 	// These are the microflows for the MyFirstModule module
-	public static com.mendix.core.actionmanagement.MicroflowCallBuilder aCT_ConvertTemplateBuilder(
-		myfirstmodule.proxies.TestEntity _testEntity
-	)
+	public static com.mendix.core.actionmanagement.MicroflowCallBuilder aCT_CreateReferencedItemListBuilder()
 	{
-		com.mendix.core.actionmanagement.MicroflowCallBuilder builder = Core.microflowCall("MyFirstModule.ACT_ConvertTemplate");
-		builder = builder.withParam("TestEntity", _testEntity);
+		com.mendix.core.actionmanagement.MicroflowCallBuilder builder = Core.microflowCall("MyFirstModule.ACT_CreateReferencedItemList");
 		return builder;
 	}
 
-	public static void aCT_ConvertTemplate(
-		IContext context,
-		myfirstmodule.proxies.TestEntity _testEntity
-	)
+	public static void aCT_CreateReferencedItemList(IContext context)
 	{
-		aCT_ConvertTemplateBuilder(
-				_testEntity
-			)
-			.execute(context);
-	}
-	public static com.mendix.core.actionmanagement.MicroflowCallBuilder oC_TestEntity_TemplateSourceBuilder(
-		myfirstmodule.proxies.TestEntity _testEntity
-	)
-	{
-		com.mendix.core.actionmanagement.MicroflowCallBuilder builder = Core.microflowCall("MyFirstModule.OC_TestEntity_TemplateSource");
-		builder = builder.withParam("TestEntity", _testEntity);
-		return builder;
-	}
-
-	public static void oC_TestEntity_TemplateSource(
-		IContext context,
-		myfirstmodule.proxies.TestEntity _testEntity
-	)
-	{
-		oC_TestEntity_TemplateSourceBuilder(
-				_testEntity
-			)
-			.execute(context);
+		aCT_CreateReferencedItemListBuilder().execute(context);
 	}
 }

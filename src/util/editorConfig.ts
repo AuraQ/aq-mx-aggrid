@@ -175,8 +175,6 @@ export function selectable(
     };
 }
 
-
-
 export function datasource(property: object | null): (child?: PreviewProps) => DatasourceProps {
     return (child: PreviewProps) => {
         return {

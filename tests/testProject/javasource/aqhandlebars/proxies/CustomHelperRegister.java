@@ -154,13 +154,13 @@ public class CustomHelperRegister implements com.mendix.systemwideinterfaces.cor
 		getMendixObject().setValue(context, MemberNames.ClassName.toString(), classname);
 	}
 
-	@Override
+	@java.lang.Override
 	public final com.mendix.systemwideinterfaces.core.IMendixObject getMendixObject()
 	{
 		return customHelperRegisterMendixObject;
 	}
 
-	@Override
+	@java.lang.Override
 	public final com.mendix.systemwideinterfaces.core.IContext getContext()
 	{
 		return context;

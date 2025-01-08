@@ -12,8 +12,8 @@ public enum WorkflowActivityExecutionState
 	Created(new java.lang.String[][] { new java.lang.String[] { "en_US", "Created" } }),
 	InProgress(new java.lang.String[][] { new java.lang.String[] { "en_US", "InProgress" } }),
 	Completed(new java.lang.String[][] { new java.lang.String[] { "en_US", "Completed" } }),
+	Paused(new java.lang.String[][] { new java.lang.String[] { "en_US", "Paused" } }),
 	Aborted(new java.lang.String[][] { new java.lang.String[] { "en_US", "Aborted" } }),
-	JumpedFrom(new java.lang.String[][] { new java.lang.String[] { "en_US", "JumpedFrom" } }),
 	Failed(new java.lang.String[][] { new java.lang.String[] { "en_US", "Failed" } });
 
 	private final java.util.Map<java.lang.String, java.lang.String> captions;
