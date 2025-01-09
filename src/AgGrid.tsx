@@ -1,13 +1,20 @@
-import { ReactElement, createElement } from "react";
+import { ReactElement, createElement, useEffect } from "react";
 import { BasicGrid, RowData } from "./components/BasicGrid";
 import CellRenderer from "./components/CellRenderer";
 import { AgGridContainerProps } from "../typings/AgGridProps";
 import { ColDef, RowClassParams } from 'ag-grid-community';
+import { LicenseManager } from "ag-grid-enterprise";
 
 import "./ui/AgGrid.css";
-//props: AgGridContainerProps
 export function AgGrid(props: AgGridContainerProps): ReactElement {
     console.debug("main props",props);
+
+    useEffect(() => {
+        const key = props.licenceKey.value!.toString();
+        LicenseManager.setLicenseKey(key);
+      }, []);
+
+
     if(props.gridData.status !== "available"){
         return <div></div>;
     }
@@ -25,10 +32,23 @@ export function AgGrid(props: AgGridContainerProps): ReactElement {
         }
     });
 
-    const rowData : RowData[] | undefined= props.gridData.items?.map(item=>{
+    const rowData : RowData[] | undefined= props.gridData.items?.map((item,index)=>{
         // create the base row metadata
         const row: RowData = { guid: item.id, _mxObject: item, rowClasses: props.dynamicRowClasses?.get(item).value};
-        // no need to create column data as it will be handled by our cell renderer
+        // build our data to show
+        props.columns.forEach(column=>{
+            const identifier : string= column.columnIdentifier.value!;
+            let value = column.attribute.get(item).value;
+            if(value instanceof Date){
+                value = (value as Date).getTime();
+            }
+
+            console.debug(`Row ${index}, Column "${identifier}" - value type`, typeof value);
+            console.debug(`Row ${index}, Column "${identifier}" - value`, value);
+            
+            row[identifier] = value;
+            
+        })
         return row;
     })
 

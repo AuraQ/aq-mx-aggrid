@@ -39,6 +39,7 @@ export interface AgGridContainerProps {
     style?: CSSProperties;
     tabIndex?: number;
     gridData: ListValue;
+    licenceKey: DynamicValue<string>;
     columns: ColumnsType[];
     showEditMode: DynamicValue<boolean>;
     dynamicRowClasses?: ListExpressionValue<string>;
@@ -56,6 +57,7 @@ export interface AgGridPreviewProps {
     renderMode: "design" | "xray" | "structure";
     translate: (text: string) => string;
     gridData: {} | { caption: string } | { type: string } | null;
+    licenceKey: string;
     columns: ColumnsPreviewType[];
     showEditMode: string;
     dynamicRowClasses: string;

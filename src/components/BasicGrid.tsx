@@ -1,6 +1,7 @@
 import { ReactElement, createElement } from "react";
 import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, ColDef, RowClassParams } from 'ag-grid-community';
+import { ModuleRegistry, ColDef, RowClassParams } from 'ag-grid-community';
+import { SideBarModule, ColumnsToolPanelModule  } from 'ag-grid-enterprise'; 
 
 export interface BasicGridProps {
     columnDefs: ColDef[];
@@ -11,10 +12,11 @@ export interface BasicGridProps {
 export interface RowData {
     guid: string | null;
     _mxObject: any | null;
+    [key: string]: any;
     rowClasses? : string;
 }
 
-ModuleRegistry.registerModules([AllCommunityModule]);
+ModuleRegistry.registerModules([SideBarModule, ColumnsToolPanelModule]);
 
 export function BasicGrid({ columnDefs, rowData, getRowClass }: BasicGridProps): ReactElement {
 
@@ -26,6 +28,7 @@ export function BasicGrid({ columnDefs, rowData, getRowClass }: BasicGridProps):
             rowData={rowData}
             columnDefs={columnDefs}
             getRowClass={getRowClass}
+            sideBar= {"columns"}
     />
 </div>;
 }

@@ -29,7 +29,8 @@
     "@types/big.js": "^6.0.2"
   },
   "dependencies": {
-    "ag-grid-react": "^33.0.3",
+    "ag-grid-enterprise": "^32.0.2",
+    "ag-grid-react": "^32.0.2",
     "classnames": "^2.2.6"
   },
   "resolutions": {

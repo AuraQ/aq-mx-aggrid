@@ -20,9 +20,15 @@ public class GridItem implements com.mendix.systemwideinterfaces.core.IEntityPro
 	 */
 	public enum MemberNames
 	{
+		AutoNumberValue("AutoNumberValue"),
+		BooleanValue("BooleanValue"),
+		DateTimeValue("DateTimeValue"),
+		DecimalValue("DecimalValue"),
+		EnumValue("EnumValue"),
+		IntegerValue("IntegerValue"),
+		LongValue("LongValue"),
 		StringValue("StringValue"),
 		AllowEdit("AllowEdit"),
-		RowColour("RowColour"),
 		GridItem_ReferencedItem("MyFirstModule.GridItem_ReferencedItem");
 
 		private final java.lang.String metaName;
@@ -82,6 +88,267 @@ public class GridItem implements com.mendix.systemwideinterfaces.core.IEntityPro
 			.stream()
 			.map(obj -> myfirstmodule.proxies.GridItem.initialize(context, obj))
 			.collect(java.util.stream.Collectors.toList());
+	}
+
+	/**
+	 * @return value of AutoNumberValue
+	 */
+	public final java.lang.Long getAutoNumberValue()
+	{
+		return getAutoNumberValue(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of AutoNumberValue
+	 */
+	public final java.lang.Long getAutoNumberValue(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.Long) getMendixObject().getValue(context, MemberNames.AutoNumberValue.toString());
+	}
+
+	/**
+	 * Set value of AutoNumberValue
+	 * @param autonumbervalue
+	 */
+	public final void setAutoNumberValue(java.lang.Long autonumbervalue)
+	{
+		setAutoNumberValue(getContext(), autonumbervalue);
+	}
+
+	/**
+	 * Set value of AutoNumberValue
+	 * @param context
+	 * @param autonumbervalue
+	 */
+	public final void setAutoNumberValue(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Long autonumbervalue)
+	{
+		getMendixObject().setValue(context, MemberNames.AutoNumberValue.toString(), autonumbervalue);
+	}
+
+	/**
+	 * @return value of BooleanValue
+	 */
+	public final java.lang.Boolean getBooleanValue()
+	{
+		return getBooleanValue(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of BooleanValue
+	 */
+	public final java.lang.Boolean getBooleanValue(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.Boolean) getMendixObject().getValue(context, MemberNames.BooleanValue.toString());
+	}
+
+	/**
+	 * Set value of BooleanValue
+	 * @param booleanvalue
+	 */
+	public final void setBooleanValue(java.lang.Boolean booleanvalue)
+	{
+		setBooleanValue(getContext(), booleanvalue);
+	}
+
+	/**
+	 * Set value of BooleanValue
+	 * @param context
+	 * @param booleanvalue
+	 */
+	public final void setBooleanValue(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean booleanvalue)
+	{
+		getMendixObject().setValue(context, MemberNames.BooleanValue.toString(), booleanvalue);
+	}
+
+	/**
+	 * @return value of DateTimeValue
+	 */
+	public final java.util.Date getDateTimeValue()
+	{
+		return getDateTimeValue(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of DateTimeValue
+	 */
+	public final java.util.Date getDateTimeValue(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.util.Date) getMendixObject().getValue(context, MemberNames.DateTimeValue.toString());
+	}
+
+	/**
+	 * Set value of DateTimeValue
+	 * @param datetimevalue
+	 */
+	public final void setDateTimeValue(java.util.Date datetimevalue)
+	{
+		setDateTimeValue(getContext(), datetimevalue);
+	}
+
+	/**
+	 * Set value of DateTimeValue
+	 * @param context
+	 * @param datetimevalue
+	 */
+	public final void setDateTimeValue(com.mendix.systemwideinterfaces.core.IContext context, java.util.Date datetimevalue)
+	{
+		getMendixObject().setValue(context, MemberNames.DateTimeValue.toString(), datetimevalue);
+	}
+
+	/**
+	 * @return value of DecimalValue
+	 */
+	public final java.math.BigDecimal getDecimalValue()
+	{
+		return getDecimalValue(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of DecimalValue
+	 */
+	public final java.math.BigDecimal getDecimalValue(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.math.BigDecimal) getMendixObject().getValue(context, MemberNames.DecimalValue.toString());
+	}
+
+	/**
+	 * Set value of DecimalValue
+	 * @param decimalvalue
+	 */
+	public final void setDecimalValue(java.math.BigDecimal decimalvalue)
+	{
+		setDecimalValue(getContext(), decimalvalue);
+	}
+
+	/**
+	 * Set value of DecimalValue
+	 * @param context
+	 * @param decimalvalue
+	 */
+	public final void setDecimalValue(com.mendix.systemwideinterfaces.core.IContext context, java.math.BigDecimal decimalvalue)
+	{
+		getMendixObject().setValue(context, MemberNames.DecimalValue.toString(), decimalvalue);
+	}
+
+	/**
+	 * Get value of EnumValue
+	 * @param enumvalue
+	 */
+	public final myfirstmodule.proxies.RowColour getEnumValue()
+	{
+		return getEnumValue(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of EnumValue
+	 */
+	public final myfirstmodule.proxies.RowColour getEnumValue(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		Object obj = getMendixObject().getValue(context, MemberNames.EnumValue.toString());
+		if (obj == null) {
+			return null;
+		}
+		return myfirstmodule.proxies.RowColour.valueOf((java.lang.String) obj);
+	}
+
+	/**
+	 * Set value of EnumValue
+	 * @param enumvalue
+	 */
+	public final void setEnumValue(myfirstmodule.proxies.RowColour enumvalue)
+	{
+		setEnumValue(getContext(), enumvalue);
+	}
+
+	/**
+	 * Set value of EnumValue
+	 * @param context
+	 * @param enumvalue
+	 */
+	public final void setEnumValue(com.mendix.systemwideinterfaces.core.IContext context, myfirstmodule.proxies.RowColour enumvalue)
+	{
+		if (enumvalue != null) {
+			getMendixObject().setValue(context, MemberNames.EnumValue.toString(), enumvalue.toString());
+		} else {
+			getMendixObject().setValue(context, MemberNames.EnumValue.toString(), null);
+		}
+	}
+
+	/**
+	 * @return value of IntegerValue
+	 */
+	public final java.lang.Integer getIntegerValue()
+	{
+		return getIntegerValue(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of IntegerValue
+	 */
+	public final java.lang.Integer getIntegerValue(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.Integer) getMendixObject().getValue(context, MemberNames.IntegerValue.toString());
+	}
+
+	/**
+	 * Set value of IntegerValue
+	 * @param integervalue
+	 */
+	public final void setIntegerValue(java.lang.Integer integervalue)
+	{
+		setIntegerValue(getContext(), integervalue);
+	}
+
+	/**
+	 * Set value of IntegerValue
+	 * @param context
+	 * @param integervalue
+	 */
+	public final void setIntegerValue(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Integer integervalue)
+	{
+		getMendixObject().setValue(context, MemberNames.IntegerValue.toString(), integervalue);
+	}
+
+	/**
+	 * @return value of LongValue
+	 */
+	public final java.lang.Long getLongValue()
+	{
+		return getLongValue(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of LongValue
+	 */
+	public final java.lang.Long getLongValue(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.Long) getMendixObject().getValue(context, MemberNames.LongValue.toString());
+	}
+
+	/**
+	 * Set value of LongValue
+	 * @param longvalue
+	 */
+	public final void setLongValue(java.lang.Long longvalue)
+	{
+		setLongValue(getContext(), longvalue);
+	}
+
+	/**
+	 * Set value of LongValue
+	 * @param context
+	 * @param longvalue
+	 */
+	public final void setLongValue(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Long longvalue)
+	{
+		getMendixObject().setValue(context, MemberNames.LongValue.toString(), longvalue);
 	}
 
 	/**
@@ -154,51 +421,6 @@ public class GridItem implements com.mendix.systemwideinterfaces.core.IEntityPro
 	public final void setAllowEdit(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean allowedit)
 	{
 		getMendixObject().setValue(context, MemberNames.AllowEdit.toString(), allowedit);
-	}
-
-	/**
-	 * Get value of RowColour
-	 * @param rowcolour
-	 */
-	public final myfirstmodule.proxies.RowColour getRowColour()
-	{
-		return getRowColour(getContext());
-	}
-
-	/**
-	 * @param context
-	 * @return value of RowColour
-	 */
-	public final myfirstmodule.proxies.RowColour getRowColour(com.mendix.systemwideinterfaces.core.IContext context)
-	{
-		Object obj = getMendixObject().getValue(context, MemberNames.RowColour.toString());
-		if (obj == null) {
-			return null;
-		}
-		return myfirstmodule.proxies.RowColour.valueOf((java.lang.String) obj);
-	}
-
-	/**
-	 * Set value of RowColour
-	 * @param rowcolour
-	 */
-	public final void setRowColour(myfirstmodule.proxies.RowColour rowcolour)
-	{
-		setRowColour(getContext(), rowcolour);
-	}
-
-	/**
-	 * Set value of RowColour
-	 * @param context
-	 * @param rowcolour
-	 */
-	public final void setRowColour(com.mendix.systemwideinterfaces.core.IContext context, myfirstmodule.proxies.RowColour rowcolour)
-	{
-		if (rowcolour != null) {
-			getMendixObject().setValue(context, MemberNames.RowColour.toString(), rowcolour.toString());
-		} else {
-			getMendixObject().setValue(context, MemberNames.RowColour.toString(), null);
-		}
 	}
 
 	/**

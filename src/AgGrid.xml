@@ -10,7 +10,7 @@
     xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd"
 >
     <name>Ag Grid</name>
-    <description>My widget description</description>
+    <description>Custom grid control using AG Grid</description>
     <icon />
     <properties>
         <propertyGroup caption="General">
@@ -19,6 +19,11 @@
                     <caption>Data source</caption>
                     <description />
                 </property>    
+                <property key="licenceKey"  type="expression" required="true">
+                    <caption>Enterprise licence key</caption>
+                    <description/>
+                    <returnType type="String" />
+                </property>        
             </propertyGroup>
             <propertyGroup caption="Columns">
                 <property key="columns" type="object" isList="true" required="true">
