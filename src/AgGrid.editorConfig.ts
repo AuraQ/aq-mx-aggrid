@@ -9,6 +9,10 @@ import {
     PreviewProps,
     text
 } from "src/util/editorConfig";
+import {    
+    hideNestedPropertiesIn,
+    hidePropertyIn,
+} from "@mendix/pluggable-widgets-tools";
 
 export type Platform = "web" | "desktop";
 
@@ -44,15 +48,25 @@ export type Problem = {
 };
 
 export function getProperties(
-    _values: AgGridPreviewProps,
+    values: AgGridPreviewProps,
     defaultProperties: Properties /* , target: Platform*/
 ): Properties {
-    // Do the values manipulation here to control the visibility of properties in Studio and Studio Pro conditionally.
-    /* Example
-    if (values.myProperty === "custom") {
-        delete defaultProperties.properties.myOtherProperty;
-    }
-    */
+    values.columns.forEach((column, index) => {
+        if (column.showContentAs !== "dynamicText") {
+            hidePropertyIn(defaultProperties, values, "columns", index, "dynamicText");
+        }
+        if (column.showContentAs !== "customContent") {
+            hideNestedPropertiesIn(defaultProperties, values, "columns", index, [
+                "content",
+                "allowEventPropagation"
+            ]);
+        }
+        if (!column.enableEditContent) {
+            hideNestedPropertiesIn(defaultProperties, values, "columns", index, [
+                "editContent"
+            ]);
+        }
+    });    
     return defaultProperties;
 }
 
@@ -84,7 +98,7 @@ export function getPreview(values: AgGridPreviewProps, isDarkMode: boolean, _spV
                                       : `[${column.attribute ? column.attribute : "No attribute selected"}]`
                               )
                           )),
-                          dropzone({placeholder: "Enter edit mode content here", showDataSourceHeader:true})(column.editContent)
+                          column.enableEditContent ? dropzone({placeholder: "Enter edit mode content here", showDataSourceHeader:true})(column.editContent) : container()()
                 )
             )
         }

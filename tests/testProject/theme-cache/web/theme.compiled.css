@@ -26808,4 +26808,16 @@ input[type=checkbox].three-state-checkbox + .control-label {
   border-width: 0;
 }
 
+.row-green {
+  background-color: green;
+}
+
+.row-red {
+  background-color: red;
+}
+
+.row-blue {
+  background-color: blue;
+}
+
 /*# sourceMappingURL=theme.compiled.css.map */

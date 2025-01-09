@@ -1,22 +1,22 @@
 import { ReactElement, createElement } from "react";
 import { AgGridReact } from 'ag-grid-react';
-import { AllCommunityModule, ModuleRegistry, ColDef } from 'ag-grid-community';
+import { AllCommunityModule, ModuleRegistry, ColDef, RowClassParams } from 'ag-grid-community';
 
 export interface BasicGridProps {
     columnDefs: ColDef[];
     rowData?: RowData[];
+    getRowClass: (params: RowClassParams) => string  |  string[]  |  undefined
 }
 
 export interface RowData {
     guid: string | null;
     _mxObject: any | null;
-    [key: string]: any;
-    creatable: boolean;
+    rowClasses? : string;
 }
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-export function BasicGrid({ columnDefs, rowData }: BasicGridProps): ReactElement {
+export function BasicGrid({ columnDefs, rowData, getRowClass }: BasicGridProps): ReactElement {
 
     return <div
     // define a height because the Data Grid will fill the size of the parent container
@@ -25,6 +25,7 @@ export function BasicGrid({ columnDefs, rowData }: BasicGridProps): ReactElement
     <AgGridReact
             rowData={rowData}
             columnDefs={columnDefs}
+            getRowClass={getRowClass}
     />
 </div>;
 }

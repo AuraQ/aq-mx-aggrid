@@ -25,4 +25,23 @@ public final class Microflows
 	{
 		aCT_CreateReferencedItemListBuilder().execute(context);
 	}
+	public static com.mendix.core.actionmanagement.MicroflowCallBuilder aCT_SaveAllChangesBuilder(
+		myfirstmodule.proxies.GridContext _gridContext
+	)
+	{
+		com.mendix.core.actionmanagement.MicroflowCallBuilder builder = Core.microflowCall("MyFirstModule.ACT_SaveAllChanges");
+		builder = builder.withParam("GridContext", _gridContext);
+		return builder;
+	}
+
+	public static void aCT_SaveAllChanges(
+		IContext context,
+		myfirstmodule.proxies.GridContext _gridContext
+	)
+	{
+		aCT_SaveAllChangesBuilder(
+				_gridContext
+			)
+			.execute(context);
+	}
 }

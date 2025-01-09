@@ -15,6 +15,7 @@ export interface ColumnsType {
     attribute: ListAttributeValue<string | Big | any | boolean | Date>;
     caption: string;
     content?: ListWidgetValue;
+    enableEditContent: boolean;
     editContent?: ListWidgetValue;
     dynamicText?: ListExpressionValue<string>;
     allowEventPropagation: boolean;
@@ -26,6 +27,7 @@ export interface ColumnsPreviewType {
     attribute: string;
     caption: string;
     content: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
+    enableEditContent: boolean;
     editContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
     dynamicText: string;
     allowEventPropagation: boolean;
@@ -37,8 +39,9 @@ export interface AgGridContainerProps {
     style?: CSSProperties;
     tabIndex?: number;
     gridData: ListValue;
-    editMode: DynamicValue<boolean>;
     columns: ColumnsType[];
+    showEditMode: DynamicValue<boolean>;
+    dynamicRowClasses?: ListExpressionValue<string>;
 }
 
 export interface AgGridPreviewProps {
@@ -53,6 +56,7 @@ export interface AgGridPreviewProps {
     renderMode: "design" | "xray" | "structure";
     translate: (text: string) => string;
     gridData: {} | { caption: string } | { type: string } | null;
-    editMode: string;
     columns: ColumnsPreviewType[];
+    showEditMode: string;
+    dynamicRowClasses: string;
 }

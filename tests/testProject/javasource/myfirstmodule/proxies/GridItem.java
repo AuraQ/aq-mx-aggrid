@@ -22,6 +22,7 @@ public class GridItem implements com.mendix.systemwideinterfaces.core.IEntityPro
 	{
 		StringValue("StringValue"),
 		AllowEdit("AllowEdit"),
+		RowColour("RowColour"),
 		GridItem_ReferencedItem("MyFirstModule.GridItem_ReferencedItem");
 
 		private final java.lang.String metaName;
@@ -153,6 +154,51 @@ public class GridItem implements com.mendix.systemwideinterfaces.core.IEntityPro
 	public final void setAllowEdit(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean allowedit)
 	{
 		getMendixObject().setValue(context, MemberNames.AllowEdit.toString(), allowedit);
+	}
+
+	/**
+	 * Get value of RowColour
+	 * @param rowcolour
+	 */
+	public final myfirstmodule.proxies.RowColour getRowColour()
+	{
+		return getRowColour(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of RowColour
+	 */
+	public final myfirstmodule.proxies.RowColour getRowColour(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		Object obj = getMendixObject().getValue(context, MemberNames.RowColour.toString());
+		if (obj == null) {
+			return null;
+		}
+		return myfirstmodule.proxies.RowColour.valueOf((java.lang.String) obj);
+	}
+
+	/**
+	 * Set value of RowColour
+	 * @param rowcolour
+	 */
+	public final void setRowColour(myfirstmodule.proxies.RowColour rowcolour)
+	{
+		setRowColour(getContext(), rowcolour);
+	}
+
+	/**
+	 * Set value of RowColour
+	 * @param context
+	 * @param rowcolour
+	 */
+	public final void setRowColour(com.mendix.systemwideinterfaces.core.IContext context, myfirstmodule.proxies.RowColour rowcolour)
+	{
+		if (rowcolour != null) {
+			getMendixObject().setValue(context, MemberNames.RowColour.toString(), rowcolour.toString());
+		} else {
+			getMendixObject().setValue(context, MemberNames.RowColour.toString(), null);
+		}
 	}
 
 	/**

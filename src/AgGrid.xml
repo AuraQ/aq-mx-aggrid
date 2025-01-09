@@ -18,16 +18,8 @@
                 <property key="gridData" type="datasource" isList="true" required="true">
                     <caption>Data source</caption>
                     <description />
-                </property>
-                <property key="editMode" type="expression" required="true">
-                    <caption>Editable</caption>
-                    <description>Whether the grid should be in edit mode or readonly</description>
-                    <returnType type="Boolean" />
-                </property>       
+                </property>    
             </propertyGroup>
-            <propertyGroup caption="Editability">
-            <systemProperty key="Editability"/>
-        </propertyGroup>
             <propertyGroup caption="Columns">
                 <property key="columns" type="object" isList="true" required="true">
                     <caption>Columns</caption>
@@ -70,6 +62,10 @@
                                 <caption>Custom content</caption>
                                 <description /> 
                             </property>
+                            <property key="enableEditContent" type="boolean" defaultValue="false">
+                                <caption>Define editable content</caption>
+                                <description>If set to yes, the Editable content section can be defined</description>
+                            </property>
                             <property key="editContent" type="widgets" dataSource="../gridData" required="false">
                                 <caption>Editable content</caption>
                                 <description />
@@ -86,6 +82,18 @@
                     </properties>
                 </property>
             </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Display">
+            <property key="showEditMode" type="expression" required="true">
+                    <caption>Show Edit Mode</caption>
+                    <description>Whether the grid should show edit or readonly mode</description>
+                    <returnType type="Boolean" />
+                </property>        
+            <property key="dynamicRowClasses" type="expression" dataSource="gridData" required="false">
+                    <caption>Dynamic Row Classes</caption>
+                    <description/>
+                    <returnType type="String" />
+                </property>        
         </propertyGroup>
     </properties>
 </widget>

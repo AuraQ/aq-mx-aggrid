@@ -21,6 +21,7 @@ public class GridContext implements com.mendix.systemwideinterfaces.core.IEntity
 	public enum MemberNames
 	{
 		ActionPayload("ActionPayload"),
+		ShowEditMode("ShowEditMode"),
 		GridContext_GridItem("MyFirstModule.GridContext_GridItem");
 
 		private final java.lang.String metaName;
@@ -107,6 +108,42 @@ public class GridContext implements com.mendix.systemwideinterfaces.core.IEntity
 	public final void setActionPayload(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String actionpayload)
 	{
 		getMendixObject().setValue(context, MemberNames.ActionPayload.toString(), actionpayload);
+	}
+
+	/**
+	 * @return value of ShowEditMode
+	 */
+	public final java.lang.Boolean getShowEditMode()
+	{
+		return getShowEditMode(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of ShowEditMode
+	 */
+	public final java.lang.Boolean getShowEditMode(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.Boolean) getMendixObject().getValue(context, MemberNames.ShowEditMode.toString());
+	}
+
+	/**
+	 * Set value of ShowEditMode
+	 * @param showeditmode
+	 */
+	public final void setShowEditMode(java.lang.Boolean showeditmode)
+	{
+		setShowEditMode(getContext(), showeditmode);
+	}
+
+	/**
+	 * Set value of ShowEditMode
+	 * @param context
+	 * @param showeditmode
+	 */
+	public final void setShowEditMode(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean showeditmode)
+	{
+		getMendixObject().setValue(context, MemberNames.ShowEditMode.toString(), showeditmode);
 	}
 
 	/**
