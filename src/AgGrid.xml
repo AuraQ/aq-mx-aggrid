@@ -93,12 +93,35 @@
                     <caption>Show Edit Mode</caption>
                     <description>Whether the grid should show edit or readonly mode</description>
                     <returnType type="Boolean" />
-                </property>        
+                </property>      
             <property key="dynamicRowClasses" type="expression" dataSource="gridData" required="false">
                     <caption>Dynamic Row Classes</caption>
                     <description/>
                     <returnType type="String" />
                 </property>        
+            <property key="enableDarkTheme" type="expression" required="true" defaultValue="false">
+                    <caption>Enable Dark Theme</caption>
+                    <description>Whether to enable dark theme (ag-theme-quartz-auto-dark) or not (ag-theme-quartz)</description>
+                    <returnType type="Boolean" />
+                </property>        
+        </propertyGroup>
+        <propertyGroup caption="Clipboard">
+            <property key="allowPaste" type="expression" required="true" defaultValue="false">
+                    <caption>Allow Paste</caption>
+                    <description>Whether the grid should allow pasting of data</description>
+                    <returnType type="Boolean" />
+                </property>  
+            <property key="pastedDataAttribute" type="attribute" required="false">
+                <caption>Pasted data attribute</caption>
+                <description>String that will be assigned the pasted data before it is processed</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+                <property key="onPaste" type="action">
+                <caption>On paste</caption>
+                <description>Action to be performed when a paste event occurs</description>
+            </property> 
         </propertyGroup>
     </properties>
 </widget>

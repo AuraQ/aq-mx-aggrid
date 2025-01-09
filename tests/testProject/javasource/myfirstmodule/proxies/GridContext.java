@@ -20,8 +20,9 @@ public class GridContext implements com.mendix.systemwideinterfaces.core.IEntity
 	 */
 	public enum MemberNames
 	{
-		ActionPayload("ActionPayload"),
+		PastedData("PastedData"),
 		ShowEditMode("ShowEditMode"),
+		ShowDarkTheme("ShowDarkTheme"),
 		GridContext_GridItem("MyFirstModule.GridContext_GridItem");
 
 		private final java.lang.String metaName;
@@ -75,39 +76,39 @@ public class GridContext implements com.mendix.systemwideinterfaces.core.IEntity
 	}
 
 	/**
-	 * @return value of ActionPayload
+	 * @return value of PastedData
 	 */
-	public final java.lang.String getActionPayload()
+	public final java.lang.String getPastedData()
 	{
-		return getActionPayload(getContext());
+		return getPastedData(getContext());
 	}
 
 	/**
 	 * @param context
-	 * @return value of ActionPayload
+	 * @return value of PastedData
 	 */
-	public final java.lang.String getActionPayload(com.mendix.systemwideinterfaces.core.IContext context)
+	public final java.lang.String getPastedData(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		return (java.lang.String) getMendixObject().getValue(context, MemberNames.ActionPayload.toString());
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.PastedData.toString());
 	}
 
 	/**
-	 * Set value of ActionPayload
-	 * @param actionpayload
+	 * Set value of PastedData
+	 * @param pasteddata
 	 */
-	public final void setActionPayload(java.lang.String actionpayload)
+	public final void setPastedData(java.lang.String pasteddata)
 	{
-		setActionPayload(getContext(), actionpayload);
+		setPastedData(getContext(), pasteddata);
 	}
 
 	/**
-	 * Set value of ActionPayload
+	 * Set value of PastedData
 	 * @param context
-	 * @param actionpayload
+	 * @param pasteddata
 	 */
-	public final void setActionPayload(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String actionpayload)
+	public final void setPastedData(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String pasteddata)
 	{
-		getMendixObject().setValue(context, MemberNames.ActionPayload.toString(), actionpayload);
+		getMendixObject().setValue(context, MemberNames.PastedData.toString(), pasteddata);
 	}
 
 	/**
@@ -144,6 +145,42 @@ public class GridContext implements com.mendix.systemwideinterfaces.core.IEntity
 	public final void setShowEditMode(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean showeditmode)
 	{
 		getMendixObject().setValue(context, MemberNames.ShowEditMode.toString(), showeditmode);
+	}
+
+	/**
+	 * @return value of ShowDarkTheme
+	 */
+	public final java.lang.Boolean getShowDarkTheme()
+	{
+		return getShowDarkTheme(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of ShowDarkTheme
+	 */
+	public final java.lang.Boolean getShowDarkTheme(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.Boolean) getMendixObject().getValue(context, MemberNames.ShowDarkTheme.toString());
+	}
+
+	/**
+	 * Set value of ShowDarkTheme
+	 * @param showdarktheme
+	 */
+	public final void setShowDarkTheme(java.lang.Boolean showdarktheme)
+	{
+		setShowDarkTheme(getContext(), showdarktheme);
+	}
+
+	/**
+	 * Set value of ShowDarkTheme
+	 * @param context
+	 * @param showdarktheme
+	 */
+	public final void setShowDarkTheme(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean showdarktheme)
+	{
+		getMendixObject().setValue(context, MemberNames.ShowDarkTheme.toString(), showdarktheme);
 	}
 
 	/**

@@ -4,7 +4,7 @@
  * @author Mendix Widgets Framework Team
  */
 import { ComponentType, CSSProperties, ReactNode } from "react";
-import { DynamicValue, ListValue, ListAttributeValue, ListExpressionValue, ListWidgetValue } from "mendix";
+import { ActionValue, DynamicValue, EditableValue, ListValue, ListAttributeValue, ListExpressionValue, ListWidgetValue } from "mendix";
 import { Big } from "big.js";
 
 export type ShowContentAsEnum = "attribute" | "dynamicText" | "customContent";
@@ -43,6 +43,10 @@ export interface AgGridContainerProps {
     columns: ColumnsType[];
     showEditMode: DynamicValue<boolean>;
     dynamicRowClasses?: ListExpressionValue<string>;
+    enableDarkTheme: DynamicValue<boolean>;
+    allowPaste: DynamicValue<boolean>;
+    pastedDataAttribute: EditableValue<string>;
+    onPaste?: ActionValue;
 }
 
 export interface AgGridPreviewProps {
@@ -61,4 +65,8 @@ export interface AgGridPreviewProps {
     columns: ColumnsPreviewType[];
     showEditMode: string;
     dynamicRowClasses: string;
+    enableDarkTheme: string;
+    allowPaste: string;
+    pastedDataAttribute: string;
+    onPaste: {} | null;
 }

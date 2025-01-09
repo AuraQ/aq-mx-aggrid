@@ -44,4 +44,23 @@ public final class Microflows
 			)
 			.execute(context);
 	}
+	public static com.mendix.core.actionmanagement.MicroflowCallBuilder wDG_ProcessPastedDataBuilder(
+		myfirstmodule.proxies.GridContext _gridContext
+	)
+	{
+		com.mendix.core.actionmanagement.MicroflowCallBuilder builder = Core.microflowCall("MyFirstModule.WDG_ProcessPastedData");
+		builder = builder.withParam("GridContext", _gridContext);
+		return builder;
+	}
+
+	public static void wDG_ProcessPastedData(
+		IContext context,
+		myfirstmodule.proxies.GridContext _gridContext
+	)
+	{
+		wDG_ProcessPastedDataBuilder(
+				_gridContext
+			)
+			.execute(context);
+	}
 }

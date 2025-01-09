@@ -26809,15 +26809,15 @@ input[type=checkbox].three-state-checkbox + .control-label {
 }
 
 .row-green {
-  background-color: green;
+  background-color: #99ff99;
 }
 
 .row-red {
-  background-color: red;
+  background-color: #ff9999;
 }
 
 .row-blue {
-  background-color: blue;
+  background-color: #9999ff;
 }
 
 /*# sourceMappingURL=theme.compiled.css.map */
