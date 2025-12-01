@@ -4,31 +4,25 @@
  * @author Mendix Widgets Framework Team
  */
 import { ComponentType, CSSProperties, ReactNode } from "react";
-import { ActionValue, DynamicValue, EditableValue, ListValue, ListAttributeValue, ListExpressionValue, ListWidgetValue } from "mendix";
+import { DynamicValue, ListValue, ListAttributeValue, ListExpressionValue, ListWidgetValue } from "mendix";
 import { Big } from "big.js";
 
 export type ShowContentAsEnum = "attribute" | "dynamicText" | "customContent";
 
 export interface ColumnsType {
-    columnIdentifier: DynamicValue<string>;
     showContentAs: ShowContentAsEnum;
     attribute: ListAttributeValue<string | Big | any | boolean | Date>;
     caption: string;
     content?: ListWidgetValue;
-    enableEditContent: boolean;
-    editContent?: ListWidgetValue;
     dynamicText?: ListExpressionValue<string>;
     allowEventPropagation: boolean;
 }
 
 export interface ColumnsPreviewType {
-    columnIdentifier: string;
     showContentAs: ShowContentAsEnum;
     attribute: string;
     caption: string;
     content: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
-    enableEditContent: boolean;
-    editContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
     dynamicText: string;
     allowEventPropagation: boolean;
 }
@@ -39,14 +33,13 @@ export interface AgGridContainerProps {
     style?: CSSProperties;
     tabIndex?: number;
     gridData: ListValue;
-    licenceKey: DynamicValue<string>;
     columns: ColumnsType[];
-    showEditMode: DynamicValue<boolean>;
+    enableMasterDetail: boolean;
+    rowIsMaster: ListExpressionValue<boolean>;
+    detailContent?: ListWidgetValue;
     dynamicRowClasses?: ListExpressionValue<string>;
     enableDarkTheme: DynamicValue<boolean>;
-    allowPaste: DynamicValue<boolean>;
-    pastedDataAttribute: EditableValue<string>;
-    onPaste?: ActionValue;
+    licenceKey: DynamicValue<string>;
 }
 
 export interface AgGridPreviewProps {
@@ -61,12 +54,11 @@ export interface AgGridPreviewProps {
     renderMode: "design" | "xray" | "structure";
     translate: (text: string) => string;
     gridData: {} | { caption: string } | { type: string } | null;
-    licenceKey: string;
     columns: ColumnsPreviewType[];
-    showEditMode: string;
+    enableMasterDetail: boolean;
+    rowIsMaster: string;
+    detailContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
     dynamicRowClasses: string;
     enableDarkTheme: string;
-    allowPaste: string;
-    pastedDataAttribute: string;
-    onPaste: {} | null;
+    licenceKey: string;
 }

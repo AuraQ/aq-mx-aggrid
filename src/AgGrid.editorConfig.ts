@@ -9,10 +9,7 @@ import {
     PreviewProps,
     text
 } from "src/util/editorConfig";
-import {    
-    hideNestedPropertiesIn,
-    hidePropertyIn,
-} from "@mendix/pluggable-widgets-tools";
+import { hideNestedPropertiesIn, hidePropertyIn } from "@mendix/pluggable-widgets-tools";
 
 export type Platform = "web" | "desktop";
 
@@ -56,39 +53,43 @@ export function getProperties(
             hidePropertyIn(defaultProperties, values, "columns", index, "dynamicText");
         }
         if (column.showContentAs !== "customContent") {
-            hideNestedPropertiesIn(defaultProperties, values, "columns", index, [
-                "content",
-                "allowEventPropagation"
-            ]);
+            hideNestedPropertiesIn(defaultProperties, values, "columns", index, ["content", "allowEventPropagation"]);
         }
-        if (!column.enableEditContent) {
-            hideNestedPropertiesIn(defaultProperties, values, "columns", index, [
-                "editContent"
-            ]);
-        }
-    });    
+    });
+
+    if (!values.enableMasterDetail) {
+        hidePropertyIn(defaultProperties, values, "rowIsMaster");
+        hidePropertyIn(defaultProperties, values, "detailContent");
+    }
     return defaultProperties;
 }
 
-export function getPreview(values: AgGridPreviewProps, isDarkMode: boolean, _spVersion: number[] = [0, 0, 0]): PreviewProps {
+export function getPreview(
+    values: AgGridPreviewProps,
+    isDarkMode: boolean,
+    _spVersion: number[] = [0, 0, 0]
+): PreviewProps {
     // Customize your pluggable widget appearance for Studio Pro.
-    
+
     // const [major, minor] = spVersion;
     // const canHideDataSourceHeader = major > 9 || (major === 9 && minor >= 20); //TODO - research this in more detail (copied from DG2)
 
     const palette = structurePreviewPalette[isDarkMode ? "dark" : "light"];
     const hasColumns = values.columns && values.columns.length > 0;
+    const enableMasterDetail = values.enableMasterDetail;
 
     const getColumns = () => {
-        if(hasColumns){
+        if (hasColumns) {
             return values.columns.map(column =>
                 container({
                     borders: true,
                     grow: 1, //TODO - change this if we allow a manual setting of column width
-                    backgroundColor:undefined //TODO - change this if we allow a column to be hidden - to indicate which ones are hidden by default
+                    backgroundColor: undefined //TODO - change this if we allow a column to be hidden - to indicate which ones are hidden by default
                 })(
-                    (column.showContentAs === "customContent"
-                        ? dropzone({placeholder: "Enter custom content here", showDataSourceHeader:true})(column.content)                    
+                    column.showContentAs === "customContent"
+                        ? dropzone({ placeholder: "Enter custom content here", showDataSourceHeader: true })(
+                              column.content
+                          )
                         : container({
                               padding: 8
                           })(
@@ -97,23 +98,39 @@ export function getPreview(values: AgGridPreviewProps, isDarkMode: boolean, _spV
                                       ? column.dynamicText ?? "Dynamic text"
                                       : `[${column.attribute ? column.attribute : "No attribute selected"}]`
                               )
-                          )),
-                          column.enableEditContent ? dropzone({placeholder: "Enter edit mode content here", showDataSourceHeader:true})(column.editContent) : container()()
+                          )
                 )
-            )
+            );
         }
 
-        return [text({ fontColor: palette.text.data })("No columns defined. Please add at least one column in the properties")];
-    }
+        return [
+            text({ fontColor: palette.text.data })(
+                "No columns defined. Please add at least one column in the properties"
+            )
+        ];
+    };
 
-    const columnLayout = rowLayout({columnSize: "fixed"})(...getColumns());
+    const masterDetailContentSection = container()(
+        enableMasterDetail
+            ? container()
+            (
+                dropzone({ placeholder: "Enter detail content here (for master/detail)", showDataSourceHeader: true })(
+                    values.detailContent
+                )
+            )
+            : container()()
+    );
+
+    const columnLayout = container()(
+        rowLayout({ columnSize: "fixed" })(...getColumns()),
+        masterDetailContentSection);
 
     const getColumnHeaders = () => {
-        if(hasColumns){
+        if (hasColumns) {
             return values.columns.map(column => {
                 const content = container({
                     borders: true,
-                    grow: 1,//TODO - change this if we allow a manual setting of column width
+                    grow: 1, //TODO - change this if we allow a manual setting of column width
                     backgroundColor: palette.background.topbarStandard //TODO - change this if we allow a column to be hidden - to indicate which ones are hidden by default
                 })(
                     rowLayout({
@@ -143,15 +160,15 @@ export function getPreview(values: AgGridPreviewProps, isDarkMode: boolean, _spV
                         )
                     )
                 );
-                
-                return selectable(column, { grow: 1 })(container()(content));
-            })
-        }
-        
-        return [];
-    }
 
-    const columnHeaderLayout = rowLayout({columnSize: "fixed"})(...getColumnHeaders());
+                return selectable(column, { grow: 1 })(container()(content));
+            });
+        }
+
+        return [];
+    };
+
+    const columnHeaderLayout = rowLayout({ columnSize: "fixed" })(...getColumnHeaders());
 
     const gridTitle = rowLayout({
         columnSize: "fixed",
@@ -167,7 +184,8 @@ export function getPreview(values: AgGridPreviewProps, isDarkMode: boolean, _spV
     return container()(
         gridTitle,
         columnHeaderLayout,
-        ...Array.from({ length: hasColumns ? 5 : 1 }).map(() => columnLayout));
+        ...Array.from({ length: hasColumns ? 5 : 1 }).map(() => columnLayout)
+    );
 }
 
 export function getCustomCaption(values: AgGridPreviewProps): string {
