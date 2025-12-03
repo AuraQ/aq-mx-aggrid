@@ -13,6 +13,14 @@ export type PinColumnEnum = "none" | "left" | "right";
 
 export type LockColumnEnum = "none" | "left" | "right";
 
+export type CanReorderEnum = "default" | "true" | "false";
+
+export type CanSortEnum = "default" | "true" | "false";
+
+export type CanResizeEnum = "default" | "true" | "false";
+
+export type WidthTypeEnum = "default" | "fixedWidth" | "flex";
+
 export interface ColumnsType {
     showContentAs: ShowContentAsEnum;
     attribute: ListAttributeValue<string | Big | any | boolean | Date>;
@@ -22,8 +30,14 @@ export interface ColumnsType {
     allowEventPropagation: boolean;
     pinColumn: PinColumnEnum;
     lockColumn: LockColumnEnum;
-    preventMoveColumn: boolean;
-    canSort: boolean;
+    canReorder: CanReorderEnum;
+    canSort: CanSortEnum;
+    canResize: CanResizeEnum;
+    widthType: WidthTypeEnum;
+    fixedWidth: number;
+    flex: number;
+    minWidth: number;
+    maxWidth: number;
 }
 
 export interface ColumnsPreviewType {
@@ -35,8 +49,14 @@ export interface ColumnsPreviewType {
     allowEventPropagation: boolean;
     pinColumn: PinColumnEnum;
     lockColumn: LockColumnEnum;
-    preventMoveColumn: boolean;
-    canSort: boolean;
+    canReorder: CanReorderEnum;
+    canSort: CanSortEnum;
+    canResize: CanResizeEnum;
+    widthType: WidthTypeEnum;
+    fixedWidth: number | null;
+    flex: number | null;
+    minWidth: number | null;
+    maxWidth: number | null;
 }
 
 export interface AgGridContainerProps {
@@ -49,6 +69,9 @@ export interface AgGridContainerProps {
     enableMasterDetail: boolean;
     rowIsMaster: ListExpressionValue<boolean>;
     detailContent?: ListWidgetValue;
+    defaultSortable: boolean;
+    defaultResizable: boolean;
+    defaultReordable: boolean;
     dynamicRowClasses?: ListExpressionValue<string>;
     enableDarkTheme: DynamicValue<boolean>;
     licenceKey: DynamicValue<string>;
@@ -71,6 +94,9 @@ export interface AgGridPreviewProps {
     enableMasterDetail: boolean;
     rowIsMaster: string;
     detailContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
+    defaultSortable: boolean;
+    defaultResizable: boolean;
+    defaultReordable: boolean;
     dynamicRowClasses: string;
     enableDarkTheme: string;
     licenceKey: string;

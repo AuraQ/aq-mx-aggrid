@@ -16,6 +16,15 @@ export function getProperties(
         if (column.showContentAs === "customContent") {
             hidePropertyIn(defaultProperties, values, "columns", index, "canSort");
         }
+        if (column.widthType === "default") {
+            hideNestedPropertiesIn(defaultProperties, values, "columns", index, ["fixedWidth","flex","minWidth","maxWidth"]);
+        }
+        if (column.widthType === "fixedWidth") {
+            hideNestedPropertiesIn(defaultProperties, values, "columns", index, ["flex","minWidth","maxWidth"]);
+        }
+        if (column.widthType === "flex") {
+            hideNestedPropertiesIn(defaultProperties, values, "columns", index, ["fixedWidth"]);
+        }
     });
 
     if (!values.enableMasterDetail) {

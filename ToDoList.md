@@ -1,0 +1,47 @@
+## Column configuration
+- [X] Can Sort (property to control whether a column is sortable or not) 
+    - [X] Add 'Can Sort' property to column configuration
+    - [X] Disable 'Can Sort' property for custom content
+    - [X] Set sort configuration on ColumnDefinition
+- [X] Can Resize (property to control whether a column is resizable or not) 
+    - [X] Add 'Can Resize' property to column configuration
+    - [X] Set resize configuration on ColumnDefinition
+- [X] Can Reorder (property to control whether a column is movable or not) 
+    - [X] Refactor existing 'suppress move' so it is consistent with DG2
+- [ ] Column Sizing (property/ies to control width of a column) 
+    - [X] Width
+    - [ ] Allow fit to content
+    - [ ] Auto fit to content
+- [ ] Column content appearance (property/ies to control how data is shown in a cell) 
+    - [ ] Text alignment
+    - [ ] Dynamic cell class
+    - [ ] Wrap text
+## General Configuration
+- [ ] Refresh time (property to control how often to refresh grid content)
+- [ ] Selection (property to control what row/s are selectable in the grid)
+    - [ ] Selection method
+    - [ ] un/check all    
+- [ ] Page size (number of rows to show)
+- [ ] Pagination
+    - [ ] Buttons vs virtual scroll
+    - [ ] Button position
+- [ ] Empty list message
+- [ ] Dynamic row class (refactor so is in a place consistent with DG2)
+- [ ] Events
+    - [ ] On click
+    - [ ] On selection change
+## Personalization
+- [ ] Default column capabilities
+    - [X] Sorting
+    - [X] Resizing
+    - [X] Reordering
+    - [ ] Hiding
+- [ ] Configuration
+    - [ ] Attribute
+    - [ ] On Change
+## Grid wide filtering
+- [ ] Filters
+## Accessibility
+- [ ] Filter Section Title
+
+

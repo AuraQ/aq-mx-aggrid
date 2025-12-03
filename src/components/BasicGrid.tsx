@@ -11,7 +11,8 @@ export interface BasicGridProps {
     getRowClass: (params: RowClassParams) => string  |  string[]  |  undefined
     enableDarkTheme: boolean
     enableMasterDetail: boolean,
-    logLevel : LogLevel
+    logLevel : LogLevel,
+    defaultColDef : any
 }
 
 export interface RowData {
@@ -23,7 +24,7 @@ export interface RowData {
     detailContent : ReactNode | null;
 }
 
-export function BasicGrid({ columnDefs, rowData, getRowClass, enableDarkTheme, enableMasterDetail, logLevel }: BasicGridProps): ReactElement {
+export function BasicGrid({ columnDefs, rowData, getRowClass, enableDarkTheme, enableMasterDetail, logLevel, defaultColDef }: BasicGridProps): ReactElement {
     const logger = new ConsoleLogger({ level: logLevel }); //TODO - make this global
     logger.debug("enableMasterDetail", enableMasterDetail);
     const gridRef = useRef<AgGridReact>(null);
@@ -74,6 +75,7 @@ export function BasicGrid({ columnDefs, rowData, getRowClass, enableDarkTheme, e
         ref={gridRef}
         rowData={rowData}
         columnDefs={columnDefs}
+        defaultColDef={defaultColDef}
         getRowClass={getRowClass}
         sideBar= {sideBar}
         masterDetail={enableMasterDetail}

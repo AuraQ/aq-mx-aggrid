@@ -9,7 +9,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd"
 >
-    <name>Ag Grid</name>
+    <name>AG Grid</name>
     <description>Custom grid control using AG Grid</description>
     <icon />
     <properties>
@@ -85,13 +85,59 @@
                                     <enumerationValue key="right">Right</enumerationValue>
                                 </enumerationValues>
                             </property>
-                            <property key="preventMoveColumn" type="boolean" defaultValue="false">
-                                <caption>Prevent Move</caption>
-                                <description>Whether the column should not be movable</description>
+                            <property key="canReorder" type="enumeration" defaultValue="default">
+                                <caption>Can Reorder</caption>
+                                <description/>
+                                <enumerationValues>
+                                    <enumerationValue key="default">Grid Default</enumerationValue>
+                                    <enumerationValue key="true">Yes</enumerationValue>
+                                    <enumerationValue key="false">No</enumerationValue>
+                                </enumerationValues>
                             </property>
-                            <property key="canSort" type="boolean" defaultValue="true">
+                            <property key="canSort" type="enumeration" defaultValue="default">
                                 <caption>Can Sort</caption>
                                 <description/>
+                                <enumerationValues>
+                                    <enumerationValue key="default">Grid Default</enumerationValue>
+                                    <enumerationValue key="true">Yes</enumerationValue>
+                                    <enumerationValue key="false">No</enumerationValue>
+                                </enumerationValues>
+                            </property>
+                            <property key="canResize" type="enumeration" defaultValue="default">
+                                <caption>Can Resize</caption>
+                                <description/>
+                                <enumerationValues>
+                                    <enumerationValue key="default">Grid Default</enumerationValue>
+                                    <enumerationValue key="true">Yes</enumerationValue>
+                                    <enumerationValue key="false">No</enumerationValue>
+                                </enumerationValues>
+                            </property>
+                        </propertyGroup>
+                        <propertyGroup caption="Appearance">                        
+                            <property key="widthType" type="enumeration" defaultValue="default">
+                                <caption>Width Type</caption>
+                                <description/>
+                                <enumerationValues>
+                                    <enumerationValue key="default">Default</enumerationValue>
+                                    <enumerationValue key="fixedWidth">Fixed Width</enumerationValue>
+                                    <enumerationValue key="flex">Flex</enumerationValue>
+                                </enumerationValues>
+                            </property>
+                            <property key="fixedWidth" type="integer" defaultValue="200">
+                                <caption>Fixed Width</caption>
+                                <description>Fixed Width (in px)</description>
+                            </property>
+                            <property key="flex" type="integer" defaultValue="1">
+                                <caption>Flex</caption>
+                                <description>Flex value</description>
+                            </property>
+                            <property key="minWidth" type="integer" defaultValue="0">
+                                <caption>Min Width</caption>
+                                <description>Minimum width (set to 0 for no min width)</description>
+                            </property>
+                            <property key="maxWidth" type="integer" defaultValue="0">
+                                <caption>Max Width</caption>
+                                <description>Maximum width (set to 0 for no min width)</description>
                             </property>
                         </propertyGroup>
                     </properties>
@@ -120,6 +166,22 @@
                     <description>The widgets to display when master row is expanded</description>
                 </property>
             </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Personalization">
+        <propertyGroup caption="Column capabilities">
+            <property key="defaultSortable" type="boolean" defaultValue="true">
+                <caption>Sorting</caption>
+                <description>Allow sorting on all columns by default</description>
+            </property>
+            <property key="defaultResizable" type="boolean" defaultValue="true">
+                <caption>Resizing</caption>
+                <description>Allow resizing on all columns by default</description>
+            </property>
+            <property key="defaultReordable" type="boolean" defaultValue="true">
+                <caption>Reordering</caption>
+                <description>Allow reordering on all columns by default</description>
+            </property>
+        </propertyGroup>
         </propertyGroup>
         <propertyGroup caption="Display">
             <property key="dynamicRowClasses" type="expression" dataSource="gridData" required="false">

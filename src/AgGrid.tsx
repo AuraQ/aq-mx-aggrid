@@ -1,4 +1,4 @@
-import { ReactElement, createElement, useEffect } from "react";
+import { ReactElement, createElement, useEffect, useMemo } from "react";
 import { BasicGrid, RowData } from "./components/BasicGrid";
 import CellRenderer from "./components/CellRenderer";
 import { AgGridContainerProps } from "../typings/AgGridProps";
@@ -26,6 +26,14 @@ export function AgGrid(props: AgGridContainerProps): ReactElement {
     useEffect(() => {
         const key = props.licenceKey.value!.toString();
         LicenseManager.setLicenseKey(key);
+    }, []);
+    
+    const defaultColDef = useMemo(() => { 
+	    return {
+            resizable : props.defaultResizable,
+            sortable : props.defaultSortable,
+            suppressMovable : !props.defaultReordable
+        };
     }, []);
 
     if (props.gridData.status !== "available") {
@@ -85,7 +93,7 @@ export function AgGrid(props: AgGridContainerProps): ReactElement {
     };
 
     const columnDefs: ColDef[] = props.columns.map((column, i) => {
-        return {
+        const columnDef : ColDef = {
             field: `field${i}`,
             headerName: column.caption,
             cellRenderer: i== 0 && props.enableMasterDetail ? "agGroupCellRenderer" : CellRenderer,
@@ -101,10 +109,44 @@ export function AgGrid(props: AgGridContainerProps): ReactElement {
             valueFormatter,
             pinned: column.pinColumn === "none" ? null : column.pinColumn,
             lockPosition: column.lockColumn === "none" ? undefined : column.lockColumn,
-            suppressMovable : column.preventMoveColumn,
-            sortable : column.showContentAs != 'customContent' && column.canSort,
             comparator : valueComparator
         };
+
+        // handle sort
+        if(column.showContentAs != 'customContent' && column.canSort == "true"){
+            columnDef.sortable = true;
+        } else if(column.canSort == "false"){
+            columnDef.sortable = false;
+        }
+
+        // handle resize
+        if(column.canResize == "true"){
+            columnDef.resizable = true;
+        } else if(column.canResize == "false"){
+            columnDef.resizable = false;
+        }
+
+        // handle reorder
+        if(column.canReorder == "true"){
+            columnDef.suppressMovable = false;
+        } else if(column.canReorder == "false"){
+            columnDef.suppressMovable = true;
+        }
+
+        if(column.widthType == "fixedWidth" && column.fixedWidth && column.fixedWidth > 0){
+            columnDef.width = column.fixedWidth;
+        }
+        else if (column.widthType == "flex" && column.flex && column.flex > 0){
+            columnDef.flex = column.flex;
+            if(column.minWidth && column.minWidth > 0){
+                columnDef.minWidth = column.minWidth;
+            }
+            if(column.maxWidth && column.maxWidth > 0){
+                columnDef.maxWidth = column.maxWidth;
+            }
+        }
+        
+        return columnDef;
     });
 
     const getRowData = (): RowData[] | undefined => {
@@ -153,6 +195,7 @@ export function AgGrid(props: AgGridContainerProps): ReactElement {
     return (
         <BasicGrid
             enableDarkTheme={props.enableDarkTheme.value!}
+            defaultColDef={defaultColDef}
             columnDefs={columnDefs}
             rowData={getRowData()}
             getRowClass={getRowClass}
