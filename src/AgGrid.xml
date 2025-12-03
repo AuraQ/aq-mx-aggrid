@@ -63,30 +63,63 @@
                             </property>
                             <property key="allowEventPropagation" type="boolean" defaultValue="true">
                                 <caption>Allow row events</caption>
-                                <description>
-                                    If set to yes, then all default events on the row, such as "on click" or selection,
-                                    will be triggered when the user interacts with custom content.
-                                </description>
+                                <description>If set to yes, then all default events on the row, such as "on click" or selection, will be triggered when the user interacts with custom content.</description>
+                            </property>
+                        </propertyGroup>
+                        <propertyGroup caption="Column Capabilities">
+                            <property key="pinColumn" type="enumeration" defaultValue="none">
+                                <caption>Pin Column</caption>
+                                <description>Whether (and where) to pin the column</description>
+                                <enumerationValues>
+                                    <enumerationValue key="none">Not Pinned</enumerationValue>
+                                    <enumerationValue key="left">Left</enumerationValue>
+                                    <enumerationValue key="right">Right</enumerationValue>
+                                </enumerationValues>
+                            </property>
+                            <property key="lockColumn" type="enumeration" defaultValue="none">
+                                <caption>Lock Column</caption>
+                                <description>Whether (and where) to lock the column</description>
+                                <enumerationValues>
+                                    <enumerationValue key="none">Not Locked</enumerationValue>
+                                    <enumerationValue key="left">Left</enumerationValue>
+                                    <enumerationValue key="right">Right</enumerationValue>
+                                </enumerationValues>
+                            </property>
+                            <property key="preventMoveColumn" type="boolean" defaultValue="false">
+                                <caption>Prevent Move</caption>
+                                <description>Whether the column should not be movable</description>
+                            </property>
+                            <property key="canSort" type="boolean" defaultValue="true">
+                                <caption>Can Sort</caption>
+                                <description/>
                             </property>
                         </propertyGroup>
                     </properties>
                 </property>
             </propertyGroup>
             <propertyGroup caption="Master Detail">
-            <property key="enableMasterDetail" type="boolean" defaultValue="false">
-                <caption>Enable Master/Detail</caption>
-                <description>Allow master rows to be expanded to show additional details.</description>
-            </property>
-            <property key="rowIsMaster" type="expression" dataSource="gridData" required="true" defaultValue="false">
-                <caption>Is Master</caption>
-                <description>Whether the current row is a master row (i.e. can be expanded to show details)</description>
-                <returnType type="Boolean" />
-            </property>
-            <property key="detailContent" type="widgets" dataSource="gridData" required="false">
-                <caption>Detail Content</caption>
-                <description>The widgets to display when master row is expanded</description>
-            </property>
-        </propertyGroup>
+                <property key="enableMasterDetail" type="boolean" defaultValue="false">
+                    <caption>Enable Master/Detail</caption>
+                    <description>Allow master rows to be expanded to show additional details.</description>
+                </property>
+                <property
+                    key="rowIsMaster"
+                    type="expression"
+                    dataSource="gridData"
+                    required="true"
+                    defaultValue="false"
+                >
+                    <caption>Is Master</caption>
+                    <description>
+                        Whether the current row is a master row (i.e. can be expanded to show details)
+                    </description>
+                    <returnType type="Boolean" />
+                </property>
+                <property key="detailContent" type="widgets" dataSource="gridData" required="false">
+                    <caption>Detail Content</caption>
+                    <description>The widgets to display when master row is expanded</description>
+                </property>
+            </propertyGroup>
         </propertyGroup>
         <propertyGroup caption="Display">
             <property key="dynamicRowClasses" type="expression" dataSource="gridData" required="false">
@@ -104,10 +137,17 @@
         </propertyGroup>
         <propertyGroup caption="Licence">
             <property key="licenceKey" type="expression" required="true">
-                    <caption>Enterprise licence key</caption>
-                    <description />
-                    <returnType type="String" />
-                </property>
+                <caption>Enterprise licence key</caption>
+                <description />
+                <returnType type="String" />
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Logging">
+            <property key="logLevel" type="expression" required="true" defaultValue="'log'">
+                <caption>Log Level</caption>
+                <description>Should resolve to 'debug', 'log', 'warn', 'error', or will default to 'log'</description>
+                <returnType type="String" />
+            </property>
         </propertyGroup>
     </properties>
 </widget>

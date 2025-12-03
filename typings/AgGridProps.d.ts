@@ -9,6 +9,10 @@ import { Big } from "big.js";
 
 export type ShowContentAsEnum = "attribute" | "dynamicText" | "customContent";
 
+export type PinColumnEnum = "none" | "left" | "right";
+
+export type LockColumnEnum = "none" | "left" | "right";
+
 export interface ColumnsType {
     showContentAs: ShowContentAsEnum;
     attribute: ListAttributeValue<string | Big | any | boolean | Date>;
@@ -16,6 +20,10 @@ export interface ColumnsType {
     content?: ListWidgetValue;
     dynamicText?: ListExpressionValue<string>;
     allowEventPropagation: boolean;
+    pinColumn: PinColumnEnum;
+    lockColumn: LockColumnEnum;
+    preventMoveColumn: boolean;
+    canSort: boolean;
 }
 
 export interface ColumnsPreviewType {
@@ -25,6 +33,10 @@ export interface ColumnsPreviewType {
     content: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
     dynamicText: string;
     allowEventPropagation: boolean;
+    pinColumn: PinColumnEnum;
+    lockColumn: LockColumnEnum;
+    preventMoveColumn: boolean;
+    canSort: boolean;
 }
 
 export interface AgGridContainerProps {
@@ -40,6 +52,7 @@ export interface AgGridContainerProps {
     dynamicRowClasses?: ListExpressionValue<string>;
     enableDarkTheme: DynamicValue<boolean>;
     licenceKey: DynamicValue<string>;
+    logLevel: DynamicValue<string>;
 }
 
 export interface AgGridPreviewProps {
@@ -61,4 +74,5 @@ export interface AgGridPreviewProps {
     dynamicRowClasses: string;
     enableDarkTheme: string;
     licenceKey: string;
+    logLevel: string;
 }

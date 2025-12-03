@@ -2,15 +2,18 @@ import { createElement } from "react";
 import type { CustomCellRendererProps } from "ag-grid-react";
 import { ColumnsType } from "typings/AgGridProps";
 import {CustomContent} from "./CustomContent";
+import { ConsoleLogger, LogLevel } from "../util/ConsoleLogger";
 
 interface CellRendererParams extends CustomCellRendererProps {
     mxColumn: ColumnsType;
+    logLevel : LogLevel
 }
 
 export default (params: CellRendererParams) => {
-    console.debug("CellRendererParams", params);
+    const logger = new ConsoleLogger({ level: params.logLevel }); //TODO - make this global
+    logger.debug("CellRendererParams", params);
     if (params.data.isDataRow) {
-        console.debug("Attribute", params.mxColumn.attribute?.get(params.data._mxObject));
+        logger.debug("Attribute", params.mxColumn.attribute?.get(params.data._mxObject));
         switch (params.mxColumn.showContentAs) {
             case "attribute":
             case "dynamicText": {

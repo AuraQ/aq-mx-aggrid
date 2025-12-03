@@ -2,6 +2,7 @@ import { ReactElement, ReactNode, createElement, useMemo, useRef, useCallback } 
 import { AgGridReact } from 'ag-grid-react';
 import { ColDef, ICellRendererParams, RowClassParams, SideBarDef } from 'ag-grid-community';
 import { DetailCellRenderer, DetailCellRendererParams } from "./DetailCellRenderer";
+import { ConsoleLogger, LogLevel } from "../util/ConsoleLogger";
 
 
 export interface BasicGridProps {
@@ -9,7 +10,8 @@ export interface BasicGridProps {
     rowData?: RowData[];
     getRowClass: (params: RowClassParams) => string  |  string[]  |  undefined
     enableDarkTheme: boolean
-    enableMasterDetail: boolean
+    enableMasterDetail: boolean,
+    logLevel : LogLevel
 }
 
 export interface RowData {
@@ -21,14 +23,15 @@ export interface RowData {
     detailContent : ReactNode | null;
 }
 
-export function BasicGrid({ columnDefs, rowData, getRowClass, enableDarkTheme, enableMasterDetail }: BasicGridProps): ReactElement {
-console.debug("enableMasterDetail", enableMasterDetail);
+export function BasicGrid({ columnDefs, rowData, getRowClass, enableDarkTheme, enableMasterDetail, logLevel }: BasicGridProps): ReactElement {
+    const logger = new ConsoleLogger({ level: logLevel }); //TODO - make this global
+    logger.debug("enableMasterDetail", enableMasterDetail);
     const gridRef = useRef<AgGridReact>(null);
 
     const isRowMaster = useCallback((dataItem: any) => {
-        console.debug("isRowMaster, dataItem", dataItem);
+        logger.debug("isRowMaster, dataItem", dataItem);
         const isMaster = dataItem ? dataItem.isRowMaster : false;
-        console.debug("isRowMaster, isMaster", isMaster);
+        logger.debug("isRowMaster, isMaster", isMaster);
         return isMaster;
     }, []);
 
@@ -77,6 +80,7 @@ console.debug("enableMasterDetail", enableMasterDetail);
         isRowMaster={isRowMaster}
         detailCellRenderer={detailCellRenderer}
         detailCellRendererParams={detailCellRendererParams}
+        detailRowAutoHeight={true}
     />
 </div>;
 }
