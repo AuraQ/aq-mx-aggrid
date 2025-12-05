@@ -12,11 +12,11 @@ package aqhandlebars.actions;
 import com.mendix.core.Core;
 import com.mendix.logging.ILogNode;
 import com.mendix.systemwideinterfaces.core.IContext;
-import com.mendix.webui.CustomJavaAction;
 import aqhandlebars.proxies.constants.Constants;
 import aqhandlebars.ICustomHelperRegister;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
-public class CustomHelperRegisterClassIsValid extends CustomJavaAction<java.lang.Boolean>
+public class CustomHelperRegisterClassIsValid extends UserAction<java.lang.Boolean>
 {
 	private final java.lang.String ClassName;
 

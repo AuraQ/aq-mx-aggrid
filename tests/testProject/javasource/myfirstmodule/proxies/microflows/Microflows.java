@@ -44,21 +44,40 @@ public final class Microflows
 			)
 			.execute(context);
 	}
-	public static com.mendix.core.actionmanagement.MicroflowCallBuilder wDG_ProcessPastedDataBuilder(
+	public static com.mendix.core.actionmanagement.MicroflowCallBuilder wDG_OnSelectionChanged_MultipleBuilder(
 		myfirstmodule.proxies.GridContext _gridContext
 	)
 	{
-		com.mendix.core.actionmanagement.MicroflowCallBuilder builder = Core.microflowCall("MyFirstModule.WDG_ProcessPastedData");
+		com.mendix.core.actionmanagement.MicroflowCallBuilder builder = Core.microflowCall("MyFirstModule.WDG_OnSelectionChanged_Multiple");
 		builder = builder.withParam("GridContext", _gridContext);
 		return builder;
 	}
 
-	public static void wDG_ProcessPastedData(
+	public static void wDG_OnSelectionChanged_Multiple(
 		IContext context,
 		myfirstmodule.proxies.GridContext _gridContext
 	)
 	{
-		wDG_ProcessPastedDataBuilder(
+		wDG_OnSelectionChanged_MultipleBuilder(
+				_gridContext
+			)
+			.execute(context);
+	}
+	public static com.mendix.core.actionmanagement.MicroflowCallBuilder wDG_OnSelectionChanged_SingleBuilder(
+		myfirstmodule.proxies.GridContext _gridContext
+	)
+	{
+		com.mendix.core.actionmanagement.MicroflowCallBuilder builder = Core.microflowCall("MyFirstModule.WDG_OnSelectionChanged_Single");
+		builder = builder.withParam("GridContext", _gridContext);
+		return builder;
+	}
+
+	public static void wDG_OnSelectionChanged_Single(
+		IContext context,
+		myfirstmodule.proxies.GridContext _gridContext
+	)
+	{
+		wDG_OnSelectionChanged_SingleBuilder(
 				_gridContext
 			)
 			.execute(context);

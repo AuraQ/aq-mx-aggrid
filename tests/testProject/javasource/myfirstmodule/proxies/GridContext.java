@@ -23,7 +23,9 @@ public class GridContext implements com.mendix.systemwideinterfaces.core.IEntity
 		PastedData("PastedData"),
 		ShowEditMode("ShowEditMode"),
 		ShowDarkTheme("ShowDarkTheme"),
-		GridContext_GridItem("MyFirstModule.GridContext_GridItem");
+		GridContext_GridItem("MyFirstModule.GridContext_GridItem"),
+		GridContext_GridItem_SelectedSingle("MyFirstModule.GridContext_GridItem_SelectedSingle"),
+		GridContext_GridItem_SelectedMultiple("MyFirstModule.GridContext_GridItem_SelectedMultiple");
 
 		private final java.lang.String metaName;
 
@@ -49,7 +51,7 @@ public class GridContext implements com.mendix.systemwideinterfaces.core.IEntity
 		if (gridContextMendixObject == null) {
 			throw new java.lang.IllegalArgumentException("The given object cannot be null.");
 		}
-		if (!com.mendix.core.Core.isSubClassOf(entityName, gridContextMendixObject.getType())) {
+		if (!gridContextMendixObject.isInstanceOf(entityName)) {
 			throw new java.lang.IllegalArgumentException(String.format("The given object is not a %s", entityName));
 		}	
 
@@ -233,6 +235,105 @@ public class GridContext implements com.mendix.systemwideinterfaces.core.IEntity
 			.collect(java.util.stream.Collectors.toList());
 		
 		getMendixObject().setValue(context, MemberNames.GridContext_GridItem.toString(), identifiers);
+	}
+
+	/**
+	 * @throws com.mendix.core.CoreException
+	 * @return value of GridContext_GridItem_SelectedSingle
+	 */
+	public final myfirstmodule.proxies.GridItem getGridContext_GridItem_SelectedSingle() throws com.mendix.core.CoreException
+	{
+		return getGridContext_GridItem_SelectedSingle(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of GridContext_GridItem_SelectedSingle
+	 * @throws com.mendix.core.CoreException
+	 */
+	public final myfirstmodule.proxies.GridItem getGridContext_GridItem_SelectedSingle(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
+	{
+		myfirstmodule.proxies.GridItem result = null;
+		com.mendix.systemwideinterfaces.core.IMendixIdentifier identifier = getMendixObject().getValue(context, MemberNames.GridContext_GridItem_SelectedSingle.toString());
+		if (identifier != null) {
+			result = myfirstmodule.proxies.GridItem.load(context, identifier);
+		}
+		return result;
+	}
+
+	/**
+	 * Set value of GridContext_GridItem_SelectedSingle
+	 * @param gridcontext_griditem_selectedsingle
+	 */
+	public final void setGridContext_GridItem_SelectedSingle(myfirstmodule.proxies.GridItem gridcontext_griditem_selectedsingle)
+	{
+		setGridContext_GridItem_SelectedSingle(getContext(), gridcontext_griditem_selectedsingle);
+	}
+
+	/**
+	 * Set value of GridContext_GridItem_SelectedSingle
+	 * @param context
+	 * @param gridcontext_griditem_selectedsingle
+	 */
+	public final void setGridContext_GridItem_SelectedSingle(com.mendix.systemwideinterfaces.core.IContext context, myfirstmodule.proxies.GridItem gridcontext_griditem_selectedsingle)
+	{
+		if (gridcontext_griditem_selectedsingle == null) {
+			getMendixObject().setValue(context, MemberNames.GridContext_GridItem_SelectedSingle.toString(), null);
+		} else {
+			getMendixObject().setValue(context, MemberNames.GridContext_GridItem_SelectedSingle.toString(), gridcontext_griditem_selectedsingle.getMendixObject().getId());
+		}
+	}
+
+	/**
+	 * @throws com.mendix.core.CoreException
+	 * @return value of GridContext_GridItem_SelectedMultiple
+	 */
+	public final java.util.List<myfirstmodule.proxies.GridItem> getGridContext_GridItem_SelectedMultiple() throws com.mendix.core.CoreException
+	{
+		return getGridContext_GridItem_SelectedMultiple(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of GridContext_GridItem_SelectedMultiple
+	 * @throws com.mendix.core.CoreException
+	 */
+	@SuppressWarnings("unchecked")
+	public final java.util.List<myfirstmodule.proxies.GridItem> getGridContext_GridItem_SelectedMultiple(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
+	{
+		java.util.List<myfirstmodule.proxies.GridItem> result = new java.util.ArrayList<>();
+		Object valueObject = getMendixObject().getValue(context, MemberNames.GridContext_GridItem_SelectedMultiple.toString());
+		if (valueObject == null) {
+			return result;
+		}
+		for (com.mendix.systemwideinterfaces.core.IMendixObject mendixObject : com.mendix.core.Core.retrieveIdList(context, (java.util.List<com.mendix.systemwideinterfaces.core.IMendixIdentifier>) valueObject)) {
+			result.add(myfirstmodule.proxies.GridItem.initialize(context, mendixObject));
+		}
+		return result;
+	}
+
+	/**
+	 * Set value of GridContext_GridItem_SelectedMultiple
+	 * @param gridcontext_griditem_selectedmultiple
+	 */
+	public final void setGridContext_GridItem_SelectedMultiple(java.util.List<myfirstmodule.proxies.GridItem> gridcontext_griditem_selectedmultiple)
+	{
+		setGridContext_GridItem_SelectedMultiple(getContext(), gridcontext_griditem_selectedmultiple);
+	}
+
+	/**
+	 * Set value of GridContext_GridItem_SelectedMultiple
+	 * @param context
+	 * @param gridcontext_griditem_selectedmultiple
+	 */
+	public final void setGridContext_GridItem_SelectedMultiple(com.mendix.systemwideinterfaces.core.IContext context, java.util.List<myfirstmodule.proxies.GridItem> gridcontext_griditem_selectedmultiple)
+	{
+		var identifiers = gridcontext_griditem_selectedmultiple
+			.stream()
+			.map(proxyObject -> proxyObject.getMendixObject().getId())
+			.collect(java.util.stream.Collectors.toList());
+		
+		getMendixObject().setValue(context, MemberNames.GridContext_GridItem_SelectedMultiple.toString(), identifiers);
 	}
 
 	@java.lang.Override

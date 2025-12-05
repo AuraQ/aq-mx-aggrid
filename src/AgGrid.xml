@@ -19,6 +19,37 @@
                     <caption>Data source</caption>
                     <description />
                 </property>
+                <property key="selectionType" type="enumeration" defaultValue="none">
+                    <caption>Selection</caption>
+                    <description />
+                    <enumerationValues>
+                        <enumerationValue key="none">None</enumerationValue>
+                        <enumerationValue key="singleRow">Single</enumerationValue>
+                        <enumerationValue key="multiRow">Multi</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="selectionMethod" type="enumeration" defaultValue="checkbox">
+                    <caption>Selection Method</caption>
+                    <description />
+                    <enumerationValues>
+                        <enumerationValue key="checkbox">Checkbox</enumerationValue>
+                        <enumerationValue key="rowClick">Row Click</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property key="singleSelectedAssociation" type="association" selectableObjects="gridData" required="false">
+                    <caption>Selected Item Association</caption>
+                    <description>Association from Context object that will hold the selected item</description>
+                    <associationTypes>
+                        <associationType name="Reference" />
+                    </associationTypes>
+                </property>
+                <property key="multiSelectedAssociation" type="association" selectableObjects="gridData" required="false">
+                    <caption>Selected Item/s Association</caption>
+                    <description>Association from Context object that will hold the selected item/s</description>
+                    <associationTypes>
+                        <associationType name="ReferenceSet" />
+                    </associationTypes>
+                </property>
             </propertyGroup>
             <propertyGroup caption="Columns">
                 <property key="columns" type="object" isList="true" required="true">
@@ -166,8 +197,14 @@
                     <description>The widgets to display when master row is expanded</description>
                 </property>
             </propertyGroup>
+            <propertyGroup caption="Events">
+                <property key="onSelectionChanged" type="action">
+                    <caption>On selection changed</caption>
+                    <description/>
+                </property>
+            </propertyGroup>
         </propertyGroup>
-        <propertyGroup caption="Personalization">
+        <propertyGroup caption="Grid wide configuration">
         <propertyGroup caption="Column capabilities">
             <property key="defaultSortable" type="boolean" defaultValue="true">
                 <caption>Sorting</caption>
@@ -207,7 +244,7 @@
         <propertyGroup caption="Logging">
             <property key="logLevel" type="expression" required="true" defaultValue="'log'">
                 <caption>Log Level</caption>
-                <description>Should resolve to 'debug', 'log', 'warn', 'error', or will default to 'log'</description>
+                <description>Should resolve to 'trace', 'debug', 'log', 'warn', 'error', or will default to 'log'</description>
                 <returnType type="String" />
             </property>
         </propertyGroup>

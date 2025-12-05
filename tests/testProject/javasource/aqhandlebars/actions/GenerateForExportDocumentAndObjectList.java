@@ -11,10 +11,10 @@ package aqhandlebars.actions;
 
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
-import com.mendix.webui.CustomJavaAction;
 import aqhandlebars.HandlebarManager;
+import com.mendix.systemwideinterfaces.core.UserAction;
 
-public class GenerateForExportDocumentAndObjectList extends CustomJavaAction<java.lang.String>
+public class GenerateForExportDocumentAndObjectList extends UserAction<java.lang.String>
 {
 	private final java.lang.String Template;
 	private final java.lang.String JsonExportMapping;

@@ -4,8 +4,12 @@
  * @author Mendix Widgets Framework Team
  */
 import { ComponentType, CSSProperties, ReactNode } from "react";
-import { DynamicValue, ListValue, ListAttributeValue, ListExpressionValue, ListWidgetValue } from "mendix";
+import { ActionValue, DynamicValue, ListValue, ListAttributeValue, ListExpressionValue, ListWidgetValue, ReferenceValue, ReferenceSetValue } from "mendix";
 import { Big } from "big.js";
+
+export type SelectionTypeEnum = "none" | "singleRow" | "multiRow";
+
+export type SelectionMethodEnum = "checkbox" | "rowClick";
 
 export type ShowContentAsEnum = "attribute" | "dynamicText" | "customContent";
 
@@ -65,10 +69,15 @@ export interface AgGridContainerProps {
     style?: CSSProperties;
     tabIndex?: number;
     gridData: ListValue;
+    selectionType: SelectionTypeEnum;
+    selectionMethod: SelectionMethodEnum;
+    singleSelectedAssociation?: ReferenceValue;
+    multiSelectedAssociation?: ReferenceSetValue;
     columns: ColumnsType[];
     enableMasterDetail: boolean;
     rowIsMaster: ListExpressionValue<boolean>;
     detailContent?: ListWidgetValue;
+    onSelectionChanged?: ActionValue;
     defaultSortable: boolean;
     defaultResizable: boolean;
     defaultReordable: boolean;
@@ -90,10 +99,15 @@ export interface AgGridPreviewProps {
     renderMode: "design" | "xray" | "structure";
     translate: (text: string) => string;
     gridData: {} | { caption: string } | { type: string } | null;
+    selectionType: SelectionTypeEnum;
+    selectionMethod: SelectionMethodEnum;
+    singleSelectedAssociation: string;
+    multiSelectedAssociation: string;
     columns: ColumnsPreviewType[];
     enableMasterDetail: boolean;
     rowIsMaster: string;
     detailContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
+    onSelectionChanged: {} | null;
     defaultSortable: boolean;
     defaultResizable: boolean;
     defaultReordable: boolean;

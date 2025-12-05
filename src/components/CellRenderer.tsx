@@ -11,9 +11,9 @@ interface CellRendererParams extends CustomCellRendererProps {
 
 export default (params: CellRendererParams) => {
     const logger = new ConsoleLogger({ level: params.logLevel }); //TODO - make this global
-    logger.debug("CellRendererParams", params);
+    logger.trace("CellRendererParams", params);
     if (params.data.isDataRow) {
-        logger.debug("Attribute", params.mxColumn.attribute?.get(params.data._mxObject));
+        logger.trace("Attribute", params.mxColumn.attribute?.get(params.data._mxObject));
         switch (params.mxColumn.showContentAs) {
             case "attribute":
             case "dynamicText": {

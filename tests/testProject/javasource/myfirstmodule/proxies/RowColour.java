@@ -6,27 +6,25 @@ package myfirstmodule.proxies;
 
 public enum RowColour
 {
-	Green(new java.lang.String[][] { new java.lang.String[] { "en_US", "Green" } }),
-	Red(new java.lang.String[][] { new java.lang.String[] { "en_US", "Red" } }),
-	Blue(new java.lang.String[][] { new java.lang.String[] { "en_US", "Blue" } });
+	Green("094d9fc2-b3ea-4bc9-89c1-e28f9111c1c0"),
+	Red("de8c6d77-eb11-494f-82a5-075650689b2c"),
+	Blue("e3181884-47a8-4870-a400-00941ca2cc1e");
 
-	private final java.util.Map<java.lang.String, java.lang.String> captions;
-
-	private RowColour(java.lang.String[][] captionStrings)
+	private final java.lang.String i18nCaptionKey;
+	
+	private RowColour(java.lang.String i18nCaptionKey)
 	{
-		this.captions = new java.util.HashMap<>();
-		for (java.lang.String[] captionString : captionStrings) {
-			captions.put(captionString[0], captionString[1]);
-		}
+		this.i18nCaptionKey = i18nCaptionKey;
 	}
 
 	public java.lang.String getCaption(java.lang.String languageCode)
 	{
-		return captions.getOrDefault(languageCode, "en_US");
+		String caption = com.mendix.core.Core.getInternationalizedString(languageCode, i18nCaptionKey);
+		return caption.isEmpty() ? getCaption() : caption;
 	}
 
 	public java.lang.String getCaption()
 	{
-		return captions.get("en_US");
+		return com.mendix.core.Core.getInternationalizedString("en_US", i18nCaptionKey);
 	}
 }

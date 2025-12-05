@@ -31,5 +31,20 @@ export function getProperties(
         hidePropertyIn(defaultProperties, values, "rowIsMaster");
         hidePropertyIn(defaultProperties, values, "detailContent");
     }
+
+    if (values.selectionType == "none") {
+        hidePropertyIn(defaultProperties, values, "selectionMethod");
+        hidePropertyIn(defaultProperties, values, "singleSelectedAssociation");
+        hidePropertyIn(defaultProperties, values, "multiSelectedAssociation");
+        hidePropertyIn(defaultProperties, values, "onSelectionChanged");
+    }
+
+    if (values.selectionType == "singleRow") {
+        hidePropertyIn(defaultProperties, values, "multiSelectedAssociation");
+    }
+
+    if (values.selectionType == "multiRow") {
+        hidePropertyIn(defaultProperties, values, "singleSelectedAssociation");
+    }
     return defaultProperties;
 }

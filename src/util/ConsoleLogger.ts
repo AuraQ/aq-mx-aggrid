@@ -5,23 +5,25 @@ export interface LogFunction {
 
 /** Basic logger interface */
 export interface Logger {
+  trace: LogFunction;
   debug: LogFunction;
   log: LogFunction;
   warn: LogFunction;
   error: LogFunction;
 }
 
-export type LogLevel = 'debug' | 'log' | 'warn' | 'error';
+export type LogLevel = 'trace' | 'debug' | 'log' | 'warn' | 'error';
 
 const NO_OUTPUT: LogFunction = (_message?: any, ..._optionalParams: any[]) => {};
 
 export class ConsoleLogger implements Logger {
+  readonly trace: LogFunction;
   readonly debug: LogFunction;
   readonly log: LogFunction;
   readonly warn: LogFunction;
   readonly error: LogFunction;
 
-  constructor(options?: { level : LogLevel }) {
+  constructor(options?: { level? : LogLevel }) {
     const { level } = options || {};
 
     this.error = console.error.bind(console);
@@ -29,6 +31,7 @@ export class ConsoleLogger implements Logger {
       this.warn = NO_OUTPUT;
       this.log = NO_OUTPUT;
       this.debug = NO_OUTPUT;
+      this.trace = NO_OUTPUT;
 
       return;
     }
@@ -37,6 +40,7 @@ export class ConsoleLogger implements Logger {
     if (level === 'warn') {
       this.log = NO_OUTPUT;
       this.debug = NO_OUTPUT;
+      this.trace = NO_OUTPUT;
 
       return;
     }
@@ -44,11 +48,20 @@ export class ConsoleLogger implements Logger {
     this.log = console.log.bind(console);
     if (level === 'log') {
       this.debug = NO_OUTPUT;
+      this.trace = NO_OUTPUT;
 
       return;
     }
 
     this.debug = console.debug.bind(console);
+    
+    if (level === 'debug') {
+      this.trace = NO_OUTPUT;
+
+      return;
+    }
+
+    this.trace = console.trace.bind(console);
   }
 }
 
