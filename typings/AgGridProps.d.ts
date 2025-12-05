@@ -23,6 +23,8 @@ export type CanSortEnum = "default" | "true" | "false";
 
 export type CanResizeEnum = "default" | "true" | "false";
 
+export type CanHideEnum = "default" | "yes" | "yesHidden" | "no";
+
 export type WidthTypeEnum = "default" | "fixedWidth" | "flex";
 
 export interface ColumnsType {
@@ -37,11 +39,14 @@ export interface ColumnsType {
     canReorder: CanReorderEnum;
     canSort: CanSortEnum;
     canResize: CanResizeEnum;
+    canHide: CanHideEnum;
     widthType: WidthTypeEnum;
     fixedWidth: number;
     flex: number;
     minWidth: number;
     maxWidth: number;
+    dynamicHeaderClass?: DynamicValue<string>;
+    dynamicCellClass?: ListExpressionValue<string>;
 }
 
 export interface ColumnsPreviewType {
@@ -56,11 +61,14 @@ export interface ColumnsPreviewType {
     canReorder: CanReorderEnum;
     canSort: CanSortEnum;
     canResize: CanResizeEnum;
+    canHide: CanHideEnum;
     widthType: WidthTypeEnum;
     fixedWidth: number | null;
     flex: number | null;
     minWidth: number | null;
     maxWidth: number | null;
+    dynamicHeaderClass: string;
+    dynamicCellClass: string;
 }
 
 export interface AgGridContainerProps {
@@ -74,6 +82,7 @@ export interface AgGridContainerProps {
     singleSelectedAssociation?: ReferenceValue;
     multiSelectedAssociation?: ReferenceSetValue;
     columns: ColumnsType[];
+    dynamicRowClass?: ListExpressionValue<string>;
     enableMasterDetail: boolean;
     rowIsMaster: ListExpressionValue<boolean>;
     detailContent?: ListWidgetValue;
@@ -81,9 +90,9 @@ export interface AgGridContainerProps {
     defaultSortable: boolean;
     defaultResizable: boolean;
     defaultReordable: boolean;
-    dynamicRowClasses?: ListExpressionValue<string>;
-    enableDarkTheme: DynamicValue<boolean>;
+    defaultHiding: boolean;
     licenceKey: DynamicValue<string>;
+    enableDarkTheme: DynamicValue<boolean>;
     logLevel: DynamicValue<string>;
 }
 
@@ -104,6 +113,7 @@ export interface AgGridPreviewProps {
     singleSelectedAssociation: string;
     multiSelectedAssociation: string;
     columns: ColumnsPreviewType[];
+    dynamicRowClass: string;
     enableMasterDetail: boolean;
     rowIsMaster: string;
     detailContent: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
@@ -111,8 +121,8 @@ export interface AgGridPreviewProps {
     defaultSortable: boolean;
     defaultResizable: boolean;
     defaultReordable: boolean;
-    dynamicRowClasses: string;
-    enableDarkTheme: string;
+    defaultHiding: boolean;
     licenceKey: string;
+    enableDarkTheme: string;
     logLevel: string;
 }

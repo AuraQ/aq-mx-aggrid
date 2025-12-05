@@ -26820,4 +26820,16 @@ input[type=checkbox].three-state-checkbox + .control-label {
   background-color: #9999ff;
 }
 
+.bg-green {
+  background-color: #99ff99;
+}
+
+.bg-red {
+  background-color: #ff9999;
+}
+
+.bg-blue {
+  background-color: #9999ff;
+}
+
 /*# sourceMappingURL=theme.compiled.css.map */

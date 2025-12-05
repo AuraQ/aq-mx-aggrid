@@ -13,7 +13,7 @@
     <description>Custom grid control using AG Grid</description>
     <icon />
     <properties>
-        <propertyGroup caption="General">
+        <propertyGroup caption="Core config">
             <propertyGroup caption="General">
                 <property key="gridData" type="datasource" isList="true" required="true">
                     <caption>Data source</caption>
@@ -143,6 +143,16 @@
                                     <enumerationValue key="false">No</enumerationValue>
                                 </enumerationValues>
                             </property>
+                            <property key="canHide" type="enumeration" defaultValue="default">
+                                <caption>Can Hide</caption>
+                                <description/>
+                                <enumerationValues>
+                                    <enumerationValue key="default">Grid Default</enumerationValue>
+                                    <enumerationValue key="yes">Yes</enumerationValue>
+                                    <enumerationValue key="yesHidden">Yes, hidden by default</enumerationValue>
+                                    <enumerationValue key="no">No</enumerationValue>
+                                </enumerationValues>
+                            </property>
                         </propertyGroup>
                         <propertyGroup caption="Appearance">                        
                             <property key="widthType" type="enumeration" defaultValue="default">
@@ -170,26 +180,33 @@
                                 <caption>Max Width</caption>
                                 <description>Maximum width (set to 0 for no min width)</description>
                             </property>
+                            <property key="dynamicHeaderClass" type="expression" required="false">
+                                <caption>Dynamic Header Class</caption>
+                                <description />
+                                <returnType type="String" />
+                            </property>
+                            <property key="dynamicCellClass" type="expression" dataSource="../gridData" required="false">
+                                <caption>Dynamic Cell Class</caption>
+                                <description />
+                                <returnType type="String" />
+                            </property>
                         </propertyGroup>
                     </properties>
                 </property>
-            </propertyGroup>
-            <propertyGroup caption="Master Detail">
+            </propertyGroup>            
+            <propertyGroup caption="Rows">
+                <property key="dynamicRowClass" type="expression" dataSource="gridData" required="false">
+                    <caption>Dynamic Row Class</caption>
+                    <description />
+                    <returnType type="String" />
+                </property>
                 <property key="enableMasterDetail" type="boolean" defaultValue="false">
                     <caption>Enable Master/Detail</caption>
-                    <description>Allow master rows to be expanded to show additional details.</description>
+                    <description/>
                 </property>
-                <property
-                    key="rowIsMaster"
-                    type="expression"
-                    dataSource="gridData"
-                    required="true"
-                    defaultValue="false"
-                >
+                <property key="rowIsMaster" type="expression" dataSource="gridData" required="true" defaultValue="false">
                     <caption>Is Master</caption>
-                    <description>
-                        Whether the current row is a master row (i.e. can be expanded to show details)
-                    </description>
+                    <description>Whether the current row is a master row (i.e. can be expanded to show details)</description>
                     <returnType type="Boolean" />
                 </property>
                 <property key="detailContent" type="widgets" dataSource="gridData" required="false">
@@ -218,30 +235,23 @@
                 <caption>Reordering</caption>
                 <description>Allow reordering on all columns by default</description>
             </property>
+            <property key="defaultHiding" type="boolean" defaultValue="true">
+                <caption>Hiding</caption>
+                <description>Allow hiding on all columns by default</description>
+            </property>
         </propertyGroup>
         </propertyGroup>
-        <propertyGroup caption="Display">
-            <property key="dynamicRowClasses" type="expression" dataSource="gridData" required="false">
-                <caption>Dynamic Row Classes</caption>
+        <propertyGroup caption="General">
+        <property key="licenceKey" type="expression" required="true">
+                <caption>Enterprise licence key</caption>
                 <description />
                 <returnType type="String" />
             </property>
             <property key="enableDarkTheme" type="expression" required="true" defaultValue="false">
                 <caption>Enable Dark Theme</caption>
-                <description>
-                    Whether to enable dark theme (ag-theme-quartz-auto-dark) or not (ag-theme-quartz)
-                </description>
+                <description>Whether to enable dark theme (ag-theme-quartz-auto-dark) or not (ag-theme-quartz)</description>
                 <returnType type="Boolean" />
             </property>
-        </propertyGroup>
-        <propertyGroup caption="Licence">
-            <property key="licenceKey" type="expression" required="true">
-                <caption>Enterprise licence key</caption>
-                <description />
-                <returnType type="String" />
-            </property>
-        </propertyGroup>
-        <propertyGroup caption="Logging">
             <property key="logLevel" type="expression" required="true" defaultValue="'log'">
                 <caption>Log Level</caption>
                 <description>Should resolve to 'trace', 'debug', 'log', 'warn', 'error', or will default to 'log'</description>

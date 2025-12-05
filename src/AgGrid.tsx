@@ -39,10 +39,10 @@ export function AgGrid(props: AgGridContainerProps): ReactElement {
                 const row: RowData = {
                     guid: item.id,
                     _mxObject: item,
-                    rowClasses: props.dynamicRowClasses?.get(item).value,
+                    rowClasses: props.dynamicRowClass?.get(item).value,
                     isDataRow: true,
                     isRowMaster: props.rowIsMaster?.get(item).value!,
-                    detailContent : props.detailContent?.get(item)
+                    detailContent : props.detailContent?.get(item),
                 };
                 // build our data to show
                 props.columns.forEach((column, i) => {
@@ -113,6 +113,7 @@ export function AgGrid(props: AgGridContainerProps): ReactElement {
             defaultResizable={props.defaultResizable}
             defaultSortable={props.defaultSortable}
             defaultReordable={props.defaultReordable}
+            defaultHiding={props.defaultHiding}
             onSelectionChanged={onSelectionChanged}
         />
     );

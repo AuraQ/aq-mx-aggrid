@@ -1,6 +1,6 @@
 import { ReactElement, ReactNode, createElement, useMemo, useRef, useCallback, memo } from "react";
 import { AgGridReact } from 'ag-grid-react';
-import { ColDef, ICellRendererParams, RowClassParams, SideBarDef, RowSelectionOptions, SelectionChangedEvent, IRowNode, ModuleRegistry } from 'ag-grid-community';
+import { ColDef, ICellRendererParams, RowClassParams, SideBarDef, RowSelectionOptions, SelectionChangedEvent, IRowNode, ModuleRegistry, CellStyleModule } from 'ag-grid-community';
 import { ColumnMenuModule, ColumnsToolPanelModule, ContextMenuModule, PivotModule } from "ag-grid-enterprise";
 import { DetailCellRenderer, DetailCellRendererParams } from "./DetailCellRenderer";
 import { ConsoleLogger, LogLevel } from "../util/ConsoleLogger";
@@ -12,7 +12,8 @@ ModuleRegistry.registerModules([
   ColumnsToolPanelModule,
   ColumnMenuModule,
   ContextMenuModule,
-  PivotModule
+  PivotModule,
+  CellStyleModule 
 ]);
 
 export interface BasicGridProps {
@@ -27,6 +28,7 @@ export interface BasicGridProps {
     defaultResizable: boolean;
     defaultSortable: boolean;
     defaultReordable: boolean;
+    defaultHiding: boolean;
 }
 
 export interface RowData {
@@ -45,13 +47,14 @@ export const BasicGrid = memo((props: BasicGridProps): ReactElement => {
 
     const gridRef = useRef<AgGridReact>(null);
 
-    const {defaultResizable, defaultSortable, defaultReordable} = props;
+    const {defaultResizable, defaultSortable, defaultReordable, defaultHiding} = props;
     
     const defaultColDef = useMemo(() => { 
 	    return {
             resizable : defaultResizable,
             sortable : defaultSortable,
-            suppressMovable : !defaultReordable
+            suppressMovable : !defaultReordable,
+            suppressColumnsToolPanel: !defaultHiding
         };
     }, []);
 
@@ -203,7 +206,13 @@ export const BasicGrid = memo((props: BasicGridProps): ReactElement => {
             autoHeight: true,
             pinned: column.pinColumn === "none" ? null : column.pinColumn,
             lockPosition: column.lockColumn === "none" ? undefined : column.lockColumn,
-            comparator : valueComparator
+            comparator : valueComparator,
+            headerClass: column.dynamicHeaderClass?.value,
+            cellClass : (params) => {
+                const className = column.dynamicCellClass?.get(params.data._mxObject).value;
+                logger.trace("cellClass, className", className);
+                return className;
+            }
         };
 
         // handle sort
@@ -227,6 +236,17 @@ export const BasicGrid = memo((props: BasicGridProps): ReactElement => {
             columnDef.suppressMovable = true;
         }
 
+        // handle hide
+        if(column.canHide === "yesHidden"){
+            columnDef.hide = true;
+            columnDef.suppressColumnsToolPanel = false;
+        } else if(column.canHide === "no"){
+            columnDef.suppressColumnsToolPanel = true;
+        }
+        if(!defaultHiding && column.canHide === "yes"){
+            columnDef.suppressColumnsToolPanel = false;
+        }
+
         if(column.widthType == "fixedWidth" && column.fixedWidth && column.fixedWidth > 0){
             columnDef.width = column.fixedWidth;
         }
@@ -239,6 +259,8 @@ export const BasicGrid = memo((props: BasicGridProps): ReactElement => {
                 columnDef.maxWidth = column.maxWidth;
             }
         }
+
+        logger.trace("columnDef", columnDef);
         
         return columnDef;
     });
