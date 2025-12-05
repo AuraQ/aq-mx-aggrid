@@ -47,6 +47,7 @@ export interface ColumnsType {
     maxWidth: number;
     dynamicHeaderClass?: DynamicValue<string>;
     dynamicCellClass?: ListExpressionValue<string>;
+    wrapText: boolean;
 }
 
 export interface ColumnsPreviewType {
@@ -69,6 +70,7 @@ export interface ColumnsPreviewType {
     maxWidth: number | null;
     dynamicHeaderClass: string;
     dynamicCellClass: string;
+    wrapText: boolean;
 }
 
 export interface AgGridContainerProps {

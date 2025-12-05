@@ -212,7 +212,8 @@ export const BasicGrid = memo((props: BasicGridProps): ReactElement => {
                 const className = column.dynamicCellClass?.get(params.data._mxObject).value;
                 logger.trace("cellClass, className", className);
                 return className;
-            }
+            },
+            wrapText : column.wrapText
         };
 
         // handle sort

@@ -190,6 +190,10 @@
                                 <description />
                                 <returnType type="String" />
                             </property>
+                            <property key="wrapText" type="boolean" defaultValue="false">
+                                <caption>Wrap Text</caption>
+                                <description/>
+                            </property>
                         </propertyGroup>
                     </properties>
                 </property>
