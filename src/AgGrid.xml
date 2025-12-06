@@ -18,6 +18,10 @@
                 <property key="gridData" type="datasource" isList="true" required="true">
                     <caption>Data source</caption>
                     <description />
+                </property>                
+                <property key="refreshTime" type="integer" defaultValue="0">
+                    <caption>Refresh time in seconds</caption>
+                    <description/>
                 </property>
                 <property key="selectionType" type="enumeration" defaultValue="none">
                     <caption>Selection</caption>

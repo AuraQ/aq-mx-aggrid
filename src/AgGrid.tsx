@@ -27,13 +27,24 @@ export function AgGrid(props: AgGridContainerProps): ReactElement {
 
     logger.debug("main props", props);
     
+    useEffect(() => {
+        if(props.refreshTime > 0){
+            const interval = setInterval(() => {
+                logger.trace("refreshing");
+                props.gridData.reload();
+            }, props.refreshTime * 1000);
+
+            return () => clearInterval(interval);
+        }        
+    }, []);
 
     useEffect(() => {
         const key = props.licenceKey.value!.toString();
         LicenseManager.setLicenseKey(key);
-    }, []);
+    }, [props.licenceKey]);
 
     useEffect(()=>{
+        logger.trace("rowData, regenerating");
         const rowData = props.gridData.items?.map((item, index) => {
                 // create the base row metadata
                 const row: RowData = {
@@ -62,6 +73,7 @@ export function AgGrid(props: AgGridContainerProps): ReactElement {
                 return row;
             });
 
+        logger.trace("rowData", rowData);
         setMxGridData(rowData);
 
     },[props.gridData]);

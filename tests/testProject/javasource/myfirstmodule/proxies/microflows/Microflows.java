@@ -44,6 +44,16 @@ public final class Microflows
 			)
 			.execute(context);
 	}
+	public static com.mendix.core.actionmanagement.MicroflowCallBuilder sE_UpdateDataInBackgroundBuilder()
+	{
+		com.mendix.core.actionmanagement.MicroflowCallBuilder builder = Core.microflowCall("MyFirstModule.SE_UpdateDataInBackground");
+		return builder;
+	}
+
+	public static void sE_UpdateDataInBackground(IContext context)
+	{
+		sE_UpdateDataInBackgroundBuilder().execute(context);
+	}
 	public static com.mendix.core.actionmanagement.MicroflowCallBuilder wDG_OnSelectionChanged_MultipleBuilder(
 		myfirstmodule.proxies.GridContext _gridContext
 	)

@@ -1,6 +1,6 @@
 ## General
 - [ ] Widget section in grid header
-- [ ] Control display of side bar
+- [ ] Control display of side bar (columns, pivot, custom, etc.)
 ## Column configuration
 - [X] Can Sort (property to control whether a column is sortable or not) 
     - [X] Add 'Can Sort' property to column configuration
@@ -19,12 +19,12 @@
     - [X] Width
     - [ ] Auto fit to grid width (NEEDS INVESTIGATION - WHEN GRID INITIALISES IT IS 0 WIDTH, PRESUMABLY DUE TO MENDIX'S DYNAMIC LOADING)
 - [ ] Column content appearance (property/ies to control how data is shown in a cell) 
-    - [ ] Text alignment
+    - [ ] Text alignment (CAN BE HANDLED BY CELL CLASS)
     - [X] Dynamic cell class
     - [X] Dynamic Header class
-    - [ ] Wrap text
+    - [X] Wrap text
 ## General Configuration
-- [ ] Refresh time (property to control how often to refresh grid content) (https://stackoverflow.com/a/72596092)
+- [X] Refresh time (property to control how often to refresh grid content) (https://stackoverflow.com/a/72596092)
 - [X] Selection (property to control what row/s are selectable in the grid)
     - [X] Selection method: None
     - [X] Selection method: Single

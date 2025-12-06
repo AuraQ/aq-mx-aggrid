@@ -79,6 +79,7 @@ export interface AgGridContainerProps {
     style?: CSSProperties;
     tabIndex?: number;
     gridData: ListValue;
+    refreshTime: number;
     selectionType: SelectionTypeEnum;
     selectionMethod: SelectionMethodEnum;
     singleSelectedAssociation?: ReferenceValue;
@@ -110,6 +111,7 @@ export interface AgGridPreviewProps {
     renderMode: "design" | "xray" | "structure";
     translate: (text: string) => string;
     gridData: {} | { caption: string } | { type: string } | null;
+    refreshTime: number | null;
     selectionType: SelectionTypeEnum;
     selectionMethod: SelectionMethodEnum;
     singleSelectedAssociation: string;
